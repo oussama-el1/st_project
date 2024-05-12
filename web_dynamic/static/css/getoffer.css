@@ -1,0 +1,507 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
+  background-color: #f6f6f6;
+}
+
+.container {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 10px rgb(234, 234, 234);
+  padding: 20px;
+  margin: 60px 20px 0px 20px;
+}
+
+.container h2 {
+  font-family: "Agrandir, Verdana, Geneva, sans-serif";
+  text-align: center;
+  color: rgb(36, 36, 36);
+  font-size: 35px;
+  font-weight: 500;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.subcontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 10px;
+}
+
+h3 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 50;
+}
+
+.preferences {
+  width: 40%;
+  padding: 10px;
+  display: block;
+  align-items: center;
+  text-align: center;
+}
+
+.sub-h3 {
+  color: rgb(36, 36, 36);
+  font-family: "Agrandir, Verdana, Geneva, sans-serif";
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  text-size-adjust: 100%;
+}
+
+.preferences>p {
+  font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  height: auto;
+  text-size-adjust: 100%;
+  margin-bottom: 10px;
+}
+
+.preference-card {
+  display: inline-block;
+  width: calc(40% - 20px);
+  /* Adjust width to fit 2 cards in each row with some margin */
+  margin-bottom: 20px;
+  border: 1px solid #060606;
+  border-radius: 10px;
+  padding: 20px;
+  /* Increase padding */
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  /* Smooth transition */
+}
+
+.preference-card:hover {
+  background-color: #f0f0f0;
+  /* Change background color on hover */
+}
+
+.preference-card img {
+  width: 80px;
+  /* Increase icon size */
+  height: 80px;
+  /* Increase icon size */
+  margin-bottom: 10px;
+  /* Add space between icon and text */
+  display: block;
+  /* Center the icon */
+  margin: 0 auto 10px;
+  /* Center the icon */
+}
+
+.preference-card p {
+  margin: 0;
+  vertical-align: bottom;
+  /* Align text at the bottom */
+}
+
+/* Hide the checkbox */
+.preference-card input[type="checkbox"] {
+  display: none;
+}
+
+.preference-card label {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Selected card style */
+.preference-card.selected {
+  background-color: #4caf50;
+  /* Change background color for selected card */
+  color: white;
+  /* Change text color for selected card */
+}
+
+/* Plan Customization Styles */
+.customization {
+  width: 40%;
+}
+
+.plan-options-p,
+.plan-options-m {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.plan-options-m h3,
+.plan-options-p h3 {
+  margin-right: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.option-card {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  background-color: #f9f9f9;
+  /* Set default background color */
+}
+
+.option-card input[type="radio"] {
+  display: none;
+  /* Hide the radio buttons */
+}
+
+.option-card label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: "Courier New", Courier, monospace;
+  cursor: pointer;
+}
+
+.option-card label::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  /* Adjust size of inner circle */
+  height: 20px;
+  /* Adjust size of inner circle */
+  border-radius: 50%;
+  background-color: transparent;
+  /* Set inner circle background color to transparent */
+  transition: background-color 0.3s ease;
+  display: none;
+}
+
+.option-card.selected {
+  background-color: #4caf50;
+  color: white;
+  /* Change background color for selected card */
+}
+
+.plan-details {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-details h3 {
+  font-weight: bold;
+  font-size: large;
+  color: #0c2d57;
+}
+
+.plan-details p {
+  margin: 5px 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plan-details .simple-text {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.plan-details p strong {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.plan-details p .price {
+  color: #4caf50;
+  font-size: x-large;
+}
+
+.plan-details p .off {
+  color: #fff;
+  background-color: #cc0a0a;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: x-large;
+}
+
+.hor-divider {
+  width: 100%;
+  border: 0.2px dotted #dbd9d9;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Style for disabled button */
+#select-plan-btn[disabled] {
+  background-color: #cccccc; /* Change to your preferred disabled background color */
+  color: #666666; /* Change to your preferred disabled text color */
+  cursor: not-allowed;
+}
+
+
+.vertical-divider {
+  border-left: 2px dashed #414040;
+  height: 600px;
+  margin: 0 20px;
+  /* Adjust margin as needed */
+}
+
+
+@media (max-width: 520px) {
+  /* General Styles for Small Devices */
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0px;
+  }
+
+  .container {
+    width: 100%;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgb(234, 234, 234);
+    padding: 20px;
+  }
+
+  .container h2 {
+    font-family: "Agrandir, Verdana, Geneva, sans-serif";
+    text-align: center;
+    color: rgb(36, 36, 36);
+    font-size: 35px;
+    font-weight: 500;
+  }
+
+  .subcontainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 0px;
+  }
+
+  h3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 50;
+  }
+
+  .preferences {
+    width: 100%;
+    padding: 0px;
+    display: block;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sub-h3 {
+    color: rgb(36, 36, 36);
+    font-family: "Agrandir, Verdana, Geneva, sans-serif";
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .preferences > p {
+    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    height: auto;
+  }
+
+  .preference-card {
+    display: inline-block;
+    width: 35%;
+    margin-bottom: 20px;
+    border: 1px solid #060606;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .preference-card:hover {
+    background-color: #f0f0f0;
+  }
+
+  .preference-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+
+  .preference-card p {
+    margin: 0;
+    vertical-align: bottom;
+  }
+
+  .preference-card input[type="checkbox"] {
+    display: none;
+  }
+
+  .preference-card label {
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  .preference-card.selected {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  /* Plan Customization Styles */
+  .customization {
+    width: 70%;
+  }
+
+  .option-card {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    background-color: #f9f9f9;
+  }
+
+  .option-card input[type="radio"] {
+    display: none;
+  }
+
+  .option-card label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: "Courier New", Courier, monospace;
+    cursor: pointer;
+  }
+
+  .option-card label::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    display: none;
+  }
+
+  .option-card.selected {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  .plan-details {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plan-details h3 {
+    font-weight: bold;
+    font-size: large;
+    color: #0c2d57;
+  }
+
+  .plan-details p {
+    margin: 5px 0;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .plan-details .simple-text {
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  .plan-details p strong {
+    font-weight: bold;
+    font-size: x-large;
+  }
+
+  .plan-details p .price {
+    color: #4caf50;
+    font-size: x-large;
+  }
+
+  .plan-details p .off {
+    color: #fff;
+    background-color: #cc0a0a;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: x-large;
+  }
+
+  .hor-divider {
+    width: 100%;
+    border: 0.2px dotted #dbd9d9;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .vertical-divider {
+    display: none;
+  }
+}

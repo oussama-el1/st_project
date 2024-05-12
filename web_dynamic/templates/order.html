@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Page</title>
+    <link rel="stylesheet" href="../static/css/order.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/order.js"></script>
+    <script src="../static/js/save.js"></script>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="#"><img src="../static/images/NEARSHORE.png?{{unique_id}}" alt="Logo"></a>
+            </li>
+            <li><a href="#">Our Plans</a></li>
+            <li>
+                <a href="#">About Us</a>
+                <ul class="dropdown">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Stories</a></li>
+                    <li><a href="#">How It Works</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Our Menus</a>
+                <ul class="dropdown">
+                    <li><a href="#">Our Menus</a></li>
+                    <li><a href="#">Cookbook</a></li>
+                </ul>
+            </li>
+            <li class="user-icon">
+                <i class="fas fa-user"></i>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="user-info">
+        <p> <strong> User Information: </strong></p>
+        <p> <strong>First Name:</strong> {{user.FirstName}} </p>
+        <p> <strong>Last Name:</strong> {{user.LastName}}</p>
+        <p> <strong>Email:</strong> {{user.email}}</p>
+        <p> <strong>Phone:</strong> {{user.tel}}</p>
+    </div>
+
+    <div class="container">
+        <div class="boxbutton">
+            <h2 style="display: none;" data-meals-per-week="{{ order_details['mealsPerWeek'] }}"></h2>
+            <button id="box-toggle" class="box-toggle-button">
+                <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512">
+                            <path fill="#fffafa"
+                                d="M50.7 58.5L0 160H208V32H93.7C75.5 32 58.9 42.3 50.7 58.5zM240 160H448L397.3 58.5C389.1 42.3 372.5 32 354.3 32H240V160zm208 32H0V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192z" />
+                        </svg>
+                    </div>
+                </div>
+                <span>Box</span>
+            </button>
+            <button class="savebutton">
+                <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" class="icon"
+                            viewBox="0 0 448 512">
+                            <path fill="#fffafa"
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <span>Save</span>
+            </button>
+        </div>
+
+        <div class="box-meals" data-id="{{order_id}}">
+                <p class="empty-box-message">Box is currently empty.</p>
+            {% if boxmeals|length > 0 %}
+                {% for meal in boxmeals %}
+                    <div class="card" data-id="{{ meal.id }}">
+                        <!-- Card content -->
+                        <div class="card-img">
+                            <div class="card-imgs pv delete">
+                                <img src="../static/images/meals/{{meal.name}}.jpg"
+                                    alt="meals1">
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="flex">
+                                <div class="project-title">{{ meal.name|replace('_', ' ') }}</div>
+                            </div>
+                            <span class="lighter"><strong>Ingredients : </strong>
+                                <ul style="margin: 10px;">
+                                    {% for ingredient in meal.ingredients %}
+                                    <li>{{ ingredient.ingredientsName }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </span>
+                            <div class="meal-buttons">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}  
+        </div>
+        <div class="hor-divader"></div>
+        {% if Topmeal|length > 0 %}
+            <div class="tcontainer">
+                <div class="div">
+                    <div class="tcircle"></div>
+                    <h1><i class="fa-solid fa-star"></i> Meals</h1>
+                </div>
+            </div>
+            <div class="meals-list">
+                {% for meal in Topmeal %}
+                <div class="card-container">
+                    <div class="card" data-id="{{ meal.id }}">
+                        <!-- Card content -->
+                        <div class="card-img">
+                            <div class="card-imgs pv delete">
+                                <img src="../static/images/meals/{{meal.name}}.jpg"
+                                    alt="meals1">
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="flex">
+                                <div class="project-title">{{ meal.name|replace('_', ' ') }}</div>
+                            </div>
+                            <span class="lighter"><strong>Ingredients : </strong>
+                                <ul style="margin: 10px;">
+                                    {% for ingredientsName in meal.ingredients %}
+                                    <li>{{ ingredientsName }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </span>
+                            <div class="meal-buttons">
+                                <button type="button" class="button">
+                                    <span class="button__text">Add Item</span>
+                                    <span class="button__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24"
+                                            stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+                                            stroke="currentColor" height="24" fill="none" class="svg">
+                                            <line y2="19" y1="5" x2="12" x1="12"></line>
+                                            <line y2="12" y1="12" x2="19" x1="5"></line>
+                                        </svg>
+                                    </span>
+                                </button>
+                                <button class="faq-button" onclick="toggleMealDetails(this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                        <path
+                                            d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+                                    </svg>
+                                    <span class="tooltip">MORE</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-card meal-details" style="display: none;">
+                        <div class="header">{{meal.name}} Details</div>
+                        <div class="body">
+                            <p style="margin: 0px; margin-bottom: 10px; text-align: center; font-weight:bold">{{
+                                meal.calories }} Calories</p>
+                            {% for detail in meal_details %}
+                            <div class="skill">
+                                <div class="skill-name">{{ detail }}</div>
+                                <div class="skill-level">
+                                    <div class="skill-percent" style="width: {{ meal[detail] }}%;"></div>
+                                </div>
+                                <div class="skill-percent-number">{{ meal[detail] }}%</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="hor-divader"></div>
+        {% if data|length > 0 %}
+            {%for preference in data%}
+                {%if data[preference]|length > 0 %}
+                    <div class="tcontainer">
+                        <div class="div">
+                            <div class="tcircle"></div>
+                            <h1>{{ preference }}</h1>
+                        </div>
+                    </div>
+                    <div class="meals-list">
+                        {% for meal in data[preference] %}
+                        <div class="card-container">
+                            <div class="card" data-id="{{ meal.id }}">
+                                <!-- Card content -->
+                                <div class="card-img">
+                                    <div class="card-imgs pv delete">
+                                        <img src="../static/images/meals/{{meal.name}}.jpg"
+                                            alt="meals1">
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <div class="flex">
+                                        <div class="project-title">{{ meal.name|replace('_', ' ') }}</div>
+                                    </div>
+                                    <span class="lighter"><strong>Ingredients : </strong>
+                                        <ul style="margin: 10px;">
+                                            {% for ingredientsName in meal.ingredients %}
+                                            <li>{{ ingredientsName }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </span>
+                                    <div class="meal-buttons">
+                                        <button type="button" class="button">
+                                            <span class="button__text">Add Item</span>
+                                            <span class="button__icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24"
+                                                    stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+                                                    stroke="currentColor" height="24" fill="none" class="svg">
+                                                    <line y2="19" y1="5" x2="12" x1="12"></line>
+                                                    <line y2="12" y1="12" x2="19" x1="5"></line>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <button class="faq-button" onclick="toggleMealDetails(this)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                                <path
+                                                    d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+                                            </svg>
+                                            <span class="tooltip">MORE</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-card meal-details" style="display: none;">
+                                <div class="header">{{meal.name}} Details</div>
+                                <div class="body">
+                                    <p style="margin: 0px; margin-bottom: 10px; text-align: center; font-weight:bold">{{
+                                        meal.calories }} Calories</p>
+                                    {% for detail in meal_details %}
+                                    <div class="skill">
+                                        <div class="skill-name">{{ detail }}</div>
+                                        <div class="skill-level">
+                                            <div class="skill-percent" style="width: {{ meal[detail] }}%;"></div>
+                                        </div>
+                                        <div class="skill-percent-number">{{ meal[detail] }}%</div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="hor-divader"></div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+<script>
+    function toggleMealDetails(button) {
+        var cardContainer = button.closest('.card-container');
+        var detailsDiv = cardContainer.querySelector('.meal-details');
+        detailsDiv.style.display = detailsDiv.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+<style>
+    .tcontainer {
+        display: inline;
+        justify-content: start;
+        align-items: center;
+        height: 100px;
+    }
+
+    .div {
+        height: 4em;
+        width: 15em;
+        background-color: rgb(255, 251, 251);
+        border-radius: 1em;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tcircle {
+        height: 5em;
+        width: 5em;
+        top: -2.5em;
+        right: -2.5em;
+        border-radius: 50%;
+        background-color: #65B741;
+        position: absolute;
+        z-index: -1;
+        transition: transform 0.5s;
+    }
+
+    .div:hover .tcircle {
+        transform: scale(8);
+    }
+
+    .tcontainer h1 {
+        font-weight: bold;
+        font-size: 1.4em;
+        z-index: 20;
+        transition: color 0.5s;
+        text-align: center;
+    }
+
+    .div:hover h1 {
+        color: white;
+    }
+</style>
+
+</html>

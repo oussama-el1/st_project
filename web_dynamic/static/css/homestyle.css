@@ -1,0 +1,218 @@
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Agrandir', sans-serif;
+}
+
+nav ul {
+    list-style: none;
+    background: white;
+    display: flex;
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #242424;
+}
+
+nav ul li:hover > a {
+    background-color: #caf47d;
+}
+
+nav ul ul.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    display: none;
+    z-index: 1000;
+    width: 100%; /* Set width to 100% */
+}
+
+nav ul ul.dropdown li {
+    display: block;
+}
+
+nav ul ul.dropdown li a {
+    padding: 12px 20px;
+    font-size: 14px;
+}
+
+nav ul li:hover > ul.dropdown {
+    display: block;
+}
+
+nav ul li:first-child a img {
+    width: 40px; /* Adjust the width as needed */
+    height: auto;
+}
+
+.new {
+    text-align: center;
+    background-color: #97dd12;
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.new span {
+    display: block;
+    font-size: 12px;
+}
+
+.first-phase {
+    background-color: rgba(255, 236, 217, 1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.too {
+    flex: 1;
+    padding: 0 20px;
+    text-align: start;
+}
+
+.treat {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343434;
+    margin-bottom: 10px;
+}
+
+.offering {
+    font-size: 16px;
+    color: #343434;
+    margin-bottom: 20px;
+}
+
+.offer-link {
+    text-decoration: none;
+}
+
+.offer {
+    background-color: rgb(6, 122, 70);
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.explain {
+    font-size: 14px;
+    color: #343434;
+    margin-bottom: 20px;
+}
+
+.image-first {
+    flex: 1;
+    margin-right: 10px;
+    padding: 0px;
+    align-items: center;
+}
+
+.image-first img {
+    width: 100%;
+    height: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.why {
+    background-color: #f8f8f8;
+    padding: 30px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.titre-why {
+    padding-bottom: 20px;
+}
+
+.WhyNearshoreMeals {
+    font-size: 24px;
+    font-weight: bold;
+    color: #242424;
+    margin-bottom: 20px;
+}
+
+.globale-all {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.first-box {
+    flex: 0 0 25%; /* Each box takes 25% width */
+    padding: 0 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.box1 {
+    margin-bottom: 20px;
+}
+
+.icone1 img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.allbox {
+    font-size: 14px;
+    color: #343434;
+}
+
+.link1 {
+    margin-top: 20px;
+}
+
+.offer-link button {
+    background-color: rgb(6, 122, 70);
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1200px){
+    .globale-div {
+        margin-left: -15px;
+        margin-right: -15px;
+        display: flex;
+        justify-content: center; /* Horizontally center the content */
+        align-items: center; /* Vertically center the content */
+        padding: 40px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .new {
+        font-size: 16px;
+    }
+}
+

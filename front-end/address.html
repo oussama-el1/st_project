@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HelloFresh Shipping Information</title>
+  <link rel="stylesheet" href="css/address.css">
+  <script src="js/address.js"></script>
+</head>
+<body>
+<section>
+  <div class="container">
+    <div class="shipping-information">
+        <h2>Shipping information</h2>
+        <span>Delivery address</span>
+        <div>
+            <div class="add-user">
+                <input type="text" id="first-name" required placeholder="First name"><br>
+
+                <input type="text" id="last-name" required placeholder="Last name"><br>
+
+                <input type="text" id="street-address" required placeholder="Street address"><br>
+
+                <input type="text" id="apt" required placeholder="Apt, suite, floor"><br>
+
+                <input type="text" id="city" required placeholder="City"><br>
+
+                <input type="text" id="zip-code" required placeholder="Zip code"><br>
+
+                <input type="text" id="state" placeholder="State"><br>
+
+                <input type="tel" id="phone-number" required placeholder="Phone number"><br>
+            </div>
+            <button class="next">Next Step</button>
+        </div>
+    </div>
+  </div>
+</section>
+<section class="order">
+<div class="order-summary">
+    <h2>Order Summary</h2>
+    <div>
+        <p>Veggie plan</p>
+        <p>3 Meals per week for 2 people (<span id="servings">6</span> servings total)</p>
+        <p>$<span id="box-price">59.94</span></p>
+        <p>First box shipping</p>
+        <p>$<span id="shipping">10.99</span></p>
+        <p>FREE</p>
+        <p>First box discount</p>
+        <p>-$<span id="discount">30.01</span></p>
+        <p>Free dessert item</p>
+        <p>FREE</p>
+        <p>Choose a free dessert item every time you order, while subscription is active.</p>
+        <p>First box total</p>
+        <p>$<span id="total">29.93</span></p>
+        <p>Congrats! You’ll receive an additional $<span id="additional-discount">69.94</span> off, across your next 6 boxes!</p>
+    </div>
+</div>
+</section>
+</body>
+</html>

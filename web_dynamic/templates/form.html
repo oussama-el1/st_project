@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <link rel="stylesheet" href="../static/css/form.css?{{unique_id}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/adress.js?{{unique_id}}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="head-text">
+                <h2>Shipping Information</h2>
+                <h3>Delivery address</h3>
+            </div>
+            <form id="shipping-form">
+                <div class="form-group">
+                    <div class="input-group">
+                            <input type="text" id="first-name" name="first-name" placeholder="Enter your first name *" required>
+                            <input type="text" id="last-name" name="last-name" placeholder="Enter your last name *" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" id="street-address" name="street-address" placeholder="Enter your street address *" required>
+                        <input type="text" id="apt-suite-floor" name="apt-suite-floor" placeholder="Apt, suite, floor *" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                            <input type="text" id="city" name="city" placeholder="Enter your city *" required>
+                            <input type="text" id="zip-code" name="zip-code" placeholder="Enter your zip code *" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                            <input type="text" id="state" name="state" placeholder="Enter your state *" required>
+                            <input type="text" id="tel" name="tel" placeholder="Enter your Number *" required>
+                    </div>
+                </div>
+                <div class="hor-divader">
+                </div>
+                <div class="condition">
+                    <input type="checkbox" id="receive-offers" name="receive-offers">
+                    <h5>Receive offers and promotions via text message</h5>
+                </div>
+                <div class="text-condition">
+                    <p>
+                        By checking the box above, I agree to HelloFresh's Terms and Conditions & Privacy Policy and agree to receive recurring texts via automated technology,
+                        including for promotions, subscriptions, etc., by or on behalf of HelloFresh, including after any subscription deactivation.
+                        I understand that consent is not a condition of any purchase, that message & data rates may apply, and that I may opt out at any time by texting STOP.
+                    </p>
+                </div>
+                <button class="button-50" type="submit">Next Step</button>
+            </form>
+        </div>
+        <div class="right-section">
+            <div class="order-container">
+                <h2>First Box Order Summary</h2>
+                <div class="order-totale">
+                    <div class="price-totale">
+                        <h4><strong>{{ session_data['preferences'] }} plan</strong></h4>
+                        <p>${{ session_data['boxprice'] }}</p>
+                    </div>
+                    <div class="order-parm">
+                        <p>{{ session_data['mealsPerWeek'] }} Meals per week for {{ session_data['numPeople'] }} people</p>
+                        <br>
+                        <p>({{ session_data['serving'] }} servings total)</p>
+                    </div>
+                </div>
+                <div class="hor-divader">
+                </div>
+                <div class="price-totale">
+                    <h4>First box shipping</h4>
+                    <div class="free">
+                        <p style="text-decoration-line: line-through; color: #323131">$4.78</p>
+                        <span class="freespan">FREE</span>
+                    </div>
+                </div>
+                <div class="hor-divader">
+                </div>
+                <div class="price-totale">
+                    <h4>First box discount</h4>
+                    <p style="color: red;">${{ session_data['discount'] }}</p>
+                </div>
+                <div class="green-div">
+                    <div class="price-totale freedesert" >
+                        <h4 style="font-weight: 400;">First box shipping</h4>
+                        <span class="freespan" style="color: green;"> FREE</span>
+                    </div>
+                    <p>Choose a free dessert item every time you order, while subscription is active.</p>
+                </div>
+                <div class="price-totale" style="margin-top: 20px;">
+                    <h4 style="font-size: 25px; font-weight: 100;">First box total</h4>
+                    <p>${{ session_data['totale'] }}</p>
+                </div>
+                <div class="hor-divader">
+                </div>
+                <div>
+                    <h2>
+                        Delivery summary
+                    </h2>
+                    <p class="lastparagraph">Please <strong style="color: rgb(17, 16, 16);">enter your zip code</strong> to see available delivery dates.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
+</script>
+</html>

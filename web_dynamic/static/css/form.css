@@ -1,0 +1,365 @@
+/* General Styles */
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    justify-content: space-between;
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0px;
+}
+
+.left-section {
+    width: 60%;
+    height: 100%;
+    padding-left: 100px;
+    padding-top: 50px;
+    padding-right: 60px;
+}
+
+.right-section {
+    width: 40%;
+    padding: 50px;
+    background-color: #f5f3f3;
+}
+
+.head-text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+}
+
+h2 {
+    box-sizing: border-box;
+    color: rgb(36, 36, 36);
+    display: inline;
+    font-family: "Agrandir, Verdana, Geneva, sans-serif";
+    font-size: 25px;
+    font-weight: 400;
+    height: auto;
+    letter-spacing: normal;
+    line-height: 24px;
+    text-rendering: optimizespeed;
+    text-size-adjust: 100%;
+    width: auto;
+}
+
+h3 {
+    box-sizing: border-box;
+    color: rgb(36, 36, 36);
+    display: inline;
+    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    height: auto;
+    line-height: 24px;
+    text-rendering: optimizeSpeed;
+    text-size-adjust: 100%;
+    width: auto;
+    margin: 0px;
+}
+
+.form-group {
+    margin-bottom: 28px;
+}
+
+form {
+    width: 100%;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.input-group input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+    appearance: none;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 15px;
+    height: 48px;
+    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(15, 13, 13);
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(70, 135, 134);
+    filter: none;
+}
+
+.condition {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+    line-height: 19.2px;
+    text-rendering: optimizespeed;
+    text-size-adjust: 100%;
+    unicode-bidi: isolate;
+    padding: 0px;
+    margin-top: 20px;
+}
+
+.condition h5 {
+    margin: 10px;
+}
+
+.text-condition {
+    color: rgb(118, 118, 118);
+    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.text-condition p {
+    margin: 0px;
+}
+
+.hor-divader {
+    width: 98%;
+    border: 2px dashed rgb(201, 201, 201);
+}
+
+input[type="checkbox"] {
+    width: 3em;
+    height: 3rem;
+    accent-color: green;
+    width: 18px;
+    height: 18px;
+}
+
+.button-50 {
+    appearance: button;
+    background-color: #379237;
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0 5px 10px 0;
+    overflow: visible;
+    padding: 12px 40px;
+    text-align: center;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.button-50:focus {
+    text-decoration: none;
+}
+
+.button-50:hover {
+    text-decoration: none;
+}
+
+.button-50:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+}
+
+.button-50:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+}
+
+.order-container {
+    padding: 10px;
+}
+
+.order-container h2 {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.order-totale {
+    margin-bottom: 18px;
+}
+
+.price-totale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+}
+
+.price-totale h4 {
+    box-sizing: border-box;
+    color: rgb(36, 36, 36);
+    display: block;
+    font-family: "Source Sans Pro, Trebuchet MS, Helvetica, sans-serif";
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0px;
+}
+
+.price-totale p {
+    color: #1d3d1f;
+}
+
+.free {
+    display: flex;
+    align-items: center;
+}
+
+.freespan {
+    margin-left: 10px;
+    box-sizing: border-box;
+    color: rgb(179, 0, 0);
+    display: inline;
+    font-family: "Source Sans Pro, Trebuchet MS, Helvetica, sans-serif";
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.order-parm p {
+    color: rgb(103, 103, 103);
+    display: inline;
+    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.green-div {
+    background-color: rgb(228, 250, 191);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.green-div p {
+    color: rgb(103, 103, 103);
+    display: inline;
+    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.freedesert {
+    margin-bottom: 15px;
+}
+
+.lastparagraph {
+    color: rgb(103, 103, 103);
+    display: inline;
+    font-family: "Source Sans Pro, Trebuchet MS, Helvetica, sans-serif";
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.button-50[disabled] {
+    background-color: #ccc;
+    color: #000;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+@media only screen and (max-width: 600px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .left-section,
+    .right-section {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+
+    .right-section {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 20px;
+        margin-bottom: 40px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    }
+
+    .input-group input[type="text"] {
+        flex: 1;
+        margin-right: 0px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+        width: 100%;
+    }
+
+    .text-condition p {
+        width: 100%;
+        box-sizing: border-box;
+        /* Include padding and borders in total width */
+    }
+
+    .order-container h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .price-totale h4 {
+        font-size: 16px;
+    }
+
+    .text-condition p {
+        font-size: 12px;
+    }
+
+    .condition h5 {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .button-50 {
+        padding: 12px 50px;
+    }
+}

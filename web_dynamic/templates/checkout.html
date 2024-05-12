@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="../static/css/checkout.css?{{unique_id}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/checkout.js?{{unique_id}}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-section cod-background">
+            <div class="subcon">
+                <div style="margin-bottom: 30px;">
+                    <h2 style="font-size: 40px;">Payment Method</h2>
+                </div>
+                <div class="cod-container">
+                    <div class="cod-description">
+                        <p>Our current payment method is <strong style="color: #245953;"> cash on delivery</strong>. We
+                            are working on integrating PayPal and
+                            credit card payments.</p>
+                        <p>Please proceed with your order, and our delivery agent will collect the payment upon
+                            delivery.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="button-50" type="button">Proceed to Checkout</button>
+        </div>
+        <div class="right-section">
+            <div class="order-container">
+                <h2>First Box Order Summary</h2>
+                <div class="order-totale">
+                    <div class="price-totale">
+                        <h4><strong>{{ session_data['preferences'] }} plan</strong></h4>
+                        <p>${{ session_data['boxprice'] }}</p>
+                    </div>
+                    <div class="order-parm">
+                        <p>{{ session_data['mealsPerWeek'] }} Meals per week for {{ session_data['numPeople'] }} people
+                        </p>
+                        <br>
+                        <p>({{ session_data['serving'] }} servings total)</p>
+                    </div>
+                </div>
+                <div class="hor-divader">
+                </div>
+                <div class="price-totale">
+                    <h4>First box shipping</h4>
+                    <div class="free">
+                        <p style="text-decoration-line: line-through; color: #323131">$4.78</p>
+                        <span class="freespan">FREE</span>
+                    </div>
+                </div>
+                <div class="hor-divader">
+                </div>
+                <div class="price-totale">
+                    <h4>First box discount</h4>
+                    <p style="color: red;">${{ session_data['discount'] }}</p>
+                </div>
+                <div class="green-div">
+                    <div class="price-totale freedesert">
+                        <h4 style="font-weight: 400;">First box shipping</h4>
+                        <span class="freespan" style="color: green;"> FREE</span>
+                    </div>
+                    <p>Choose a free dessert item every time you order, while subscription is active.</p>
+                </div>
+                <div class="price-totale" style="margin-top: 20px;">
+                    <h4 style="font-size: 25px; font-weight: 100;">First box total</h4>
+                    <p>${{ session_data['totale'] }}</p>
+                </div>
+                <div class="hor-divader">
+                </div>
+                <div>
+                    <h2>
+                        Delivery address
+                    </h2>
+                    <p class="lastparagraph"><strong>Street: </strong>{{ session_data['address']['street'] }}</p><br>
+                    <p class="lastparagraph"><strong>Apartment: </strong>{{ session_data['address']['apt'] }}</p><br>
+                    <p class="lastparagraph"><strong>City: </strong>{{ session_data['address']['city'] }}</p><br>
+                    <p class="lastparagraph"><strong>Zipcode: </strong>{{ session_data['address']['zipcode'] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    window.addEventListener('pageshow', function (event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
+</script>
+
+</html>

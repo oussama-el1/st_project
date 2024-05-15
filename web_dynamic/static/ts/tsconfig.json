@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "../js/admin/",
+    "strict": true,
+    "esModuleInterop": true,
+    "removeComments": true
+  },
+  "include": ["./*.ts"]
+}

@@ -27,3 +27,24 @@ def add_users():
     user = User(**data)
     user.save()
     return make_response(jsonify(user.to_dict()), 201)
+
+
+@app_views.route('/admin/users', methods=['GET'], strict_slashes=False)
+def user_data_for_admin():
+    """ Get user data for admin operation with pagination """
+    page = request.args.get('page', default=1, type=int)
+    per_page = request.args.get('perPage', default=10, type=int)
+
+    all_users = storage.users_data()
+
+    start_index = (page - 1) * per_page
+    end_index = min(start_index + per_page, len(all_users))
+
+    users_on_page = all_users[start_index:end_index]
+
+    return jsonify({
+        'users': users_on_page,
+        'total_users': len(all_users),
+        'page': page,
+        'per_page': per_page
+    })

@@ -17,11 +17,13 @@ const matrixData = [
   chartData.pending,
   chartData.confirmed,
   chartData.delivered,
-  chartData.canceled
+  chartData.cancelled,
 ];
 
-// Calculate sum of each row in the matrix
-const rowSums = matrixData.map(row => row.reduce((acc, val) => acc + val, 0));
+
+
+console.log(matrixData)
+
 
 // Get canvas element
 const ctx = document.getElementById('matrixChart').getContext('2d');
@@ -33,7 +35,7 @@ const chart = new Chart(ctx, {
     labels: ['Pending ⌛', 'confirmed ✅', 'delivered 🚚', 'cancelled ❌'],
     datasets: [{
       label: 'orders 📦',
-      data: rowSums,
+      data: matrixData,
       backgroundColor: [
         '#F8BD0C',
         '#0066B0',

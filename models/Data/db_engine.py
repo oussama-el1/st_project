@@ -162,6 +162,18 @@ class DBStorage:
         return monthly_data
 
 
+    def get_latest_orders(self, num_orders: int) -> list:
+            """Returns a list of the latest orders in the database.
+
+            Args:
+                num_orders (int): The maximum number of orders to return.
+
+            Returns:
+                list: A list of the latest orders in the database.
+            """
+            return self.__session.query(Order).order_by(Order.created_at.desc()).limit(num_orders).all()
+
+
     def charts_data(self) -> dict:
         """
         Returns a dictionary containing data for charts.
@@ -181,14 +193,14 @@ class DBStorage:
         # Get the number of each status in the orders table
         pending_count = self.__session.query(Order.id).filter(Order.status == 'pending').count()
         delivered_count = self.__session.query(Order.id).filter(Order.status == 'delivered').count()
-        canceled_count = self.__session.query(Order.id).filter(Order.status == 'canceled').count()
+        canceled_count = self.__session.query(Order.id).filter(Order.status == 'cancelled').count()
         confirmed_count = self.__session.query(Order.id).filter(Order.status == 'confirmed').count()
 
         # Create the 'status' dictionary
         chart_data = {
             'pending': pending_count,
             'delivered': delivered_count,
-            'canceled': canceled_count,
+            'cancelled': canceled_count,
             'confirmed': confirmed_count
         }
 
@@ -206,10 +218,51 @@ class DBStorage:
                 Plan.created_at < current_month_end
             )
 
-            # Add the earnings for the current month to the 'earning' dictionary
-            earning[months[i-1]] = earning_in_current_month.scalar()
+            if earning_in_current_month.scalar() is None:
+                earning[months[i-1]] = 0
+            else:
+                earning[months[i-1]] = round(earning_in_current_month.scalar(), 2)
 
         # Add the 'earning' dictionary to the 'charts_data' dictionary
         chart_data['earning'] = earning
 
         return chart_data
+
+    @classmethod
+    def calculate_total_spend_by_user(cls, session, user_id):
+        total_spend = (
+            session.query(func.sum(Plan.boxtotale))
+            .join(Order)
+            .filter(Order.user_id == user_id)
+            .scalar()
+        )
+        
+        total_spend = 0 if total_spend is None else total_spend
+
+        return round(total_spend, 2)
+
+    @classmethod
+    def calculate_number_of_orders_by_user(cls, session, user_id):
+        number_of_orders = (
+            session.query(func.count(Order.id))
+            .filter(Order.user_id == user_id)
+            .scalar()
+        )
+        return number_of_orders
+
+    def users_data(self):
+        """
+        Get user data including total spending and number of orders.
+        """
+        users_objects = self.all(User).values()
+        users_dicts = []
+
+        for user in users_objects:
+            users_dicts.append(user.to_dict())
+
+        for user in users_dicts:
+            user_id = user.get('id')
+            user['totale_spend'] = self.calculate_total_spend_by_user(self.__session, user_id)
+            user['total_orders'] = self.calculate_number_of_orders_by_user(self.__session, user_id)
+
+        return users_dicts

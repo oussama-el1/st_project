@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!----======== CSS ======== -->
-  <link rel="stylesheet" href="../../../static/css/dashbord.css">
+  <link rel="stylesheet" href="../../../static/css/dashbord.css?{{unique_id}}">
 
   <!----===== Boxicons CSS ===== -->
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -258,42 +258,18 @@
       <div class="line-chart">
         <canvas id="myChart"></canvas>
       </div>
-      <div class="latest-order">
-        <div class="wrapper">
-          <div class="color night-rider first">
-            Latest Orders
-          </div>
+      <div class="wrapper">
           <div class="table-data">
-            <div class="color chinese-white">
-              87b0b2fb-fb76-4d6b
-              <span class="hex">#e1e1e1</span>
+            <div class="color night-rider first">
+              Latest Orders
             </div>
-            <div class="color anti-flash-white">
-              chinese-white
-              <span class="hex">#e1e1e1</span>
+            {% for id, date in latest_orders.items() %}
+            <div id="{{id}}" class="color chinese-white">
+              {{ id }}
+              <span class="hex" data-timestamp="{{ date }}">{{ date }}</span>
             </div>
-            <div class="color chinese-white">
-              chinese-white
-              <span class="hex">#e1e1e1</span>
-            </div>
-            <div class="color anti-flash-white">
-              chinese-white
-              <span class="hex">#e1e1e1</span>
-            </div>
-            <div class="color chinese-white">
-              chinese-white
-              <span class="hex">#e1e1e1</span>
-            </div>
-            <div class="color anti-flash-white">
-              chinese-white
-              <span class="hex">#e1e1e1</span>
-            </div>
-            <div class="color chinese-white last">
-              chinese-white
-              <span class="hex">#e1e1e1</span>
-            </div>
+            {% endfor %}
           </div>
-        </div>
       </div>
     </div>
     <div class="last-row">
@@ -361,9 +337,12 @@
       }
     });
   </script>
+  <!-- dictionary of id key and date value -->
+  <script type="application/json" id="latest-order-dates">{{ latest_orders | tojson | safe }}</script>
   <script type="application/json" id="chart-data">{{ chartdata | tojson | safe }}</script>
-  <script src="../../../static/js/chart_cercle.js"></script>
-  <script src="../../../static/js/linechart.js"></script>
+  <script src="../../../static/js/admin/chart_cercle.js?{{unique_id}}"></script>
+  <script src="../../../static/js/admin/linechart.js?{{unique_id}}"></script>
+  <!-- update time for latest orders -->
+  <script src="../../../static/js/admin/latest_orders_time.js?{{unique_id}}"></script>
 </body>
-
 </html>

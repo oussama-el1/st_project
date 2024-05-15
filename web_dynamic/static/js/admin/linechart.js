@@ -1,3 +1,14 @@
+// Access the chartdata from the script tag with id "chart-data"
+var chartDataElement = document.getElementById("chart-data");
+
+if (chartDataElement) {
+  // Parse the JSON data from the script tag content
+  var chartData = JSON.parse(chartDataElement.textContent);
+} else {
+  console.error("Chart data not found.");
+}
+
+
 // Data for the chart
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -7,7 +18,7 @@ const data = {
         '#379237',
     ],
       borderColor: '#54B435',
-      data: [10, 20, 15, 25, 30, 35, 40, 45, 50, 45, 35, 25],
+      data: chartData.earning,
   }]
 };
 

@@ -273,9 +273,37 @@ def order_page(order_id):
 
 @app.route('/admin', strict_slashes=False)
 def admin_count():
+    """Shows the admin dashboard page
+
+    This page displays a dashboard with the following information:
+    - Total orders for each month in the year
+    - Number of users and the percentage of active users
+    - Number of plans and the percentage of active plans
+
+    The page also displays a chart showing the evolution of the number of orders per month
+    over the last year.
+
+    The page also generates a unique id that can be used as an identifier for the dashboard
+    in the database.
+    """
     data = storage.month_data()
     chartdata = storage.charts_data()
-    return render_template('admin/template/index.html', data=data, chartdata=chartdata , unique_id=uuid4())
+
+    latest_orders = {}
+
+    for order in storage.get_latest_orders(6):
+        latest_orders[order.id] = order.created_at
+
+    
+    return render_template('admin/template/index.html', data=data, chartdata=chartdata, latest_orders=latest_orders, unique_id=uuid4())
+
+
+
+@app.route('/admin/users', strict_slashes=False)
+def admin_users():
+    """ UI for CRUD operation on users """
+    return render_template('admin/template/users.html', unique_id=uuid4())
+
 
 
 

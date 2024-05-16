@@ -11,4 +11,4 @@ class Plan(BaseData, Base):
     NumberMeals = Column(Integer, nullable=False)
     boxtotale = Column(Float, nullable=False)
     
-    users = relationship("User", secondary="orders", overlaps="plans")
+    users = relationship("User", secondary="orders", back_populates="plans")

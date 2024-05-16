@@ -267,8 +267,13 @@ class DBStorage:
             
             original_date_str = user.get('created_at')
             original_date = datetime.strptime(original_date_str, "%Y-%m-%dT%H:%M:%S.%f")
-            formatted_date = original_date.strftime("%m/%d/%Y")
+            formatted_date = original_date.strftime("%m/%d/%Y %H:%M:%S")
             user['created_at'] = formatted_date
+
+            original_date_str = user.get('updated_at')
+            original_date = datetime.strptime(original_date_str, "%Y-%m-%dT%H:%M:%S.%f")
+            formatted_date = original_date.strftime("%m/%d/%Y %H:%M:%S")
+            user['updated_at'] = formatted_date
 
         return users_dicts
 

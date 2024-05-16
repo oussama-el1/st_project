@@ -9,3 +9,6 @@ class OrderMeal(Base):
     order_id = Column(String(60), ForeignKey('orders.id'), primary_key=True)
     meal_id = Column(String(60), ForeignKey('meals.id'), primary_key=True)
     quantity = Column(Integer, nullable=False, default=1)
+
+    order = relationship("Order", back_populates="order_meals")
+    meal = relationship("Meal", back_populates="order_meals")

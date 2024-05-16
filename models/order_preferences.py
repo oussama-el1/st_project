@@ -9,3 +9,6 @@ class OrderPreference(Base):
 
     order_id = Column(String(60), ForeignKey('orders.id'), primary_key=True)
     preference_id = Column(String(60), ForeignKey('preferences.id'), primary_key=True)
+
+    order = relationship("Order", back_populates="order_preferences")
+    preference = relationship("Preference", back_populates="order_preferences")

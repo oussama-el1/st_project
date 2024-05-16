@@ -10,5 +10,6 @@ class Preference(BaseData, Base):
     name = Column(String(100), nullable=False)
 
     # Define relationship with MealPreference
-    meals = relationship("Meal", secondary="meal_preferences", overlaps="preference")
-    orders = relationship("Order", secondary="order_preferences", overlaps="preferences")
+    meals = relationship("Meal", secondary="meal_preferences", back_populates="preferences")
+    orders = relationship("Order", secondary="order_preferences", back_populates="preferences")
+    order_preferences = relationship("OrderPreference", backref="preference_in_order")

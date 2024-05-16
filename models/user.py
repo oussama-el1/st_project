@@ -16,6 +16,5 @@ class User(BaseData, Base):
     tel = Column(String(45), nullable=False)
 
     addresses = relationship("Address", back_populates="user", cascade="all, delete-orphan")
-    plans = relationship("Plan", secondary="orders", overlaps="users")
-    # Add cascade option to delete related orders when a user is deleted
-    orders = relationship("Order", cascade="all, delete", backref="user")
+    plans = relationship("Plan", secondary="orders", back_populates="users")
+    orders = relationship("Order", cascade="all, delete", back_populates="user")

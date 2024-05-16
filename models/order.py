@@ -10,10 +10,10 @@ class Order(BaseData, Base):
     plan_id = Column(String(60), ForeignKey('plans.id'), primary_key=True)
     status = Column(Enum('pending', 'confirmed', 'cancelled', 'delivered'), default='pending', nullable=False)
 
-    # Define many-to-many relationship with Meals
-    meals = relationship("Meal", secondary="order_meals", backref="order_associations")
-    preferences = relationship("Preference", secondary="order_preferences", overlaps="orders")
+    user = relationship("User", back_populates="orders")
 
-    # Define relationship with OrderMeal for cascade deletion
-    order_meals = relationship("OrderMeal", cascade="all, delete", backref="order", overlaps="meals,order_associations")
-    order_preferences = relationship("OrderPreference", cascade="all, delete", backref="order", overlaps="preferences")
+    meals = relationship("Meal", secondary="order_meals", back_populates="orders")
+    preferences = relationship("Preference", secondary="order_preferences", back_populates="orders")
+
+    order_meals = relationship("OrderMeal", cascade="all, delete", back_populates="order")
+    order_preferences = relationship("OrderPreference", cascade="all, delete", back_populates="order")

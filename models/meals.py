@@ -15,6 +15,6 @@ class Meal(BaseData, Base):
     Carbs = Column(Integer, nullable=True)
     Fat = Column(Integer, nullable=True)
     
-    orders = relationship("Order", secondary="order_meals", overlaps="order_meals")
+    orders = relationship("Order", secondary="order_meals", overlaps="meals")
     ingredients = relationship("Ingredient", secondary="meal_ingredients", overlaps="meals")
     preferences = relationship("Preference", secondary="meal_preferences", overlaps="meals")

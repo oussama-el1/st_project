@@ -302,7 +302,8 @@ def admin_count():
 @app.route('/admin/users', strict_slashes=False)
 def admin_users():
     """ UI for CRUD operation on users """
-    return render_template('admin/template/users.html', unique_id=uuid4())
+    users = storage.users_data()
+    return render_template('admin/template/users.html',users=users, unique_id=uuid4())
 
 
 

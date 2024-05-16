@@ -609,6 +609,23 @@ body.dark .home .text {
 }
 
 
+/* Custom scrollbar styles */
+    /* For WebKit browsers */
+    ::-webkit-scrollbar {
+      width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: #888; /* Grey */
+      border-radius: 4px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Dark grey */
+}
+
+
 /* Media query for responsiveness */
 @media screen and (max-width: 768px) {
   .card {

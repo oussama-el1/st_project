@@ -11,6 +11,9 @@ class Order(BaseData, Base):
     status = Column(Enum('pending', 'confirmed', 'cancelled', 'delivered'), default='pending', nullable=False)
 
     # Define many-to-many relationship with Meals
-    meals = relationship("Meal", secondary="order_meals",  overlaps="orders")
+    meals = relationship("Meal", secondary="order_meals", backref="order_associations")
     preferences = relationship("Preference", secondary="order_preferences", overlaps="orders")
-    order_meals = relationship("OrderMeal", overlaps="meals")
+
+    # Define relationship with OrderMeal for cascade deletion
+    order_meals = relationship("OrderMeal", cascade="all, delete", backref="order", overlaps="meals,order_associations")
+    order_preferences = relationship("OrderPreference", cascade="all, delete", backref="order", overlaps="preferences")

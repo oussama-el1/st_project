@@ -51,7 +51,7 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/nershormeals2',pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/nershormeals1',pool_pre_ping=True)
         
 
     def all(self, cls=None):
@@ -264,5 +264,16 @@ class DBStorage:
             user_id = user.get('id')
             user['totale_spend'] = self.calculate_total_spend_by_user(self.__session, user_id)
             user['total_orders'] = self.calculate_number_of_orders_by_user(self.__session, user_id)
+            
+            original_date_str = user.get('created_at')
+            original_date = datetime.strptime(original_date_str, "%Y-%m-%dT%H:%M:%S.%f")
+            formatted_date = original_date.strftime("%m/%d/%Y")
+            user['created_at'] = formatted_date
 
         return users_dicts
+
+
+
+    def get_orders_for_a_user(self, user_id):
+        orders = self.__session.query(Order).filter(Order.user_id == user_id).all()
+        return orders

@@ -8,7 +8,7 @@ tailwind.config = {
     },
     fontFamily: {
       'body': [
-    'Inter', 
+    'Open Sans', 
     'ui-sans-serif', 
     'system-ui', 
     '-apple-system', 
@@ -25,7 +25,7 @@ tailwind.config = {
     'Noto Color Emoji'
   ],
       'sans': [
-    'Inter', 
+    'Open Sans', 
     'ui-sans-serif', 
     'system-ui', 
     '-apple-system', 
@@ -42,8 +42,5 @@ tailwind.config = {
     'Noto Color Emoji'
   ]
     }
-  },
-  content: [
-    "C:\Users\oussama\Desktop\stage technique project\v1\st_project\node_modules\flowbite\**\*.js"
-]
+  }
 }

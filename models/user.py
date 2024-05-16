@@ -2,7 +2,7 @@
 """ Create User Models """
 from models.base import BaseData, Base
 from sqlalchemy import Column, String
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
 
@@ -14,7 +14,8 @@ class User(BaseData, Base):
     FirstName = Column(String(45), nullable=False)
     LastName = Column(String(45), nullable=False)
     tel = Column(String(45), nullable=False)
-    addresses = relationship("Address", back_populates="user")
-    
-    # Define backref for orders placed by a user
+
+    addresses = relationship("Address", back_populates="user", cascade="all, delete-orphan")
     plans = relationship("Plan", secondary="orders", overlaps="users")
+    # Add cascade option to delete related orders when a user is deleted
+    orders = relationship("Order", cascade="all, delete", backref="user")

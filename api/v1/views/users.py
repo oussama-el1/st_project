@@ -99,7 +99,7 @@ def delete_users(user_id):
         abort(404)
 
 
-    # Delete the user
+    # Delete the user and all associated rows
     storage.delete(user)
     storage.save()
 

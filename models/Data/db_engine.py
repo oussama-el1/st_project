@@ -3,7 +3,7 @@
 Contains the class DBStorage
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from os import getenv
 from sqlalchemy import create_engine, Index, func
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -51,7 +51,7 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        self.__engine = create_engine('mysql+mysqldb://root:root@localhost/nershormeals1',pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://root:@localhost/nershormeals1',pool_pre_ping=True)
         
 
     def all(self, cls=None):
@@ -277,6 +277,112 @@ class DBStorage:
 
         return users_dicts
 
+    def orders_data(self):
+        """
+            Get orders date including order id  : done
+            user id (this can be link to the user row in the table) : done
+            status : done
+            Order date : done
+            Totale : done
+            Delivery address (state, city, , street, apt) : done
+            delivery date 
+            user email
+            User tel
+        """
+
+        orders = self.all(Order).values()
+        orders_data = []
+
+        for order in orders:
+            """ get data for each user """
+            email = order.user.email
+            tel = order.user.tel
+
+            plan = self.get(Plan, order.plan_id)
+            if plan is not None:
+                totale = plan.boxtotale
+            else:
+                totale = 0
+
+            if len(order.user.addresses) > 0:
+                adress_object = order.user.addresses[-1] # get last address
+                delivry_adress = f"{adress_object.state}, {adress_object.city} [{adress_object.zipcode}], {adress_object.street} , {adress_object.apt}"
+            else:
+                delivry_adress = "No address"
+
+            order_date = order.created_at.strftime("%m/%d/%Y %H:%M:%S")
+            # add two days to the order date
+            delivery_date = (order.created_at + timedelta(days=2)).strftime("%m/%d/%Y %H:%M:%S")
+
+            if order.status == 'pending':
+                color = 'yellow'
+            elif order.status == 'delivered':
+                color = 'green'
+            elif order.status == 'cancelled':
+                color = 'red'
+            else:
+                color = 'primary'
+
+            
+            # meals_objects = order.meals
+            
+            # meals = [ meal.to_dict() for meal in meals_objects]
+            meals = []
+            for order_meal in order.order_meals:
+                meal = self.get(Meal, order_meal.meal.id)
+                if meal is not None:
+                    meal_data = meal.to_dict()
+                    meal_data['quantity'] = order_meal.quantity
+                    if meal_data not in meals:
+                        meals.append(meal_data)
+
+            order_data = {
+                'order_id': order.id,
+                'user_id': order.user_id,
+                'status': order.status,
+                'color': color,
+                'order_date': order_date,
+                'totale': totale,
+                'delivery_address': delivry_adress,
+                'delivery_date': delivery_date,
+                'user_email': email,
+                'user_tel': tel,
+                'meals': meals
+            }
+
+            orders_data.append(order_data)
+
+        return orders_data
+
+
+
+    def meals_data(self):
+        """
+        Get the data for each meal
+        """
+        meals = self.all(Meal).values()
+        meals_data = []
+        for meal in meals :
+            ingredients = []
+            for ingredient in meal.ingredients:
+                ingredients.append(ingredient.ingredientsName)
+            meal_dict = meal.to_dict()
+            meal_dict['ingredients'] = ingredients
+            meals_data.append(meal_dict)
+
+        return meals_data
+
+    def preferences_data(self):
+        """
+        Get the data for each preference
+        """
+        preferences = self.all(Preference).values()
+        preferences_data = []
+        for preference in preferences :
+            preference_dict = preference.to_dict()
+            preferences_data.append(preference_dict)
+
+        return preferences_data
 
 
     def get_orders_for_a_user(self, user_id):

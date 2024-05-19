@@ -11,9 +11,9 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css?unique_id" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js?unique_id"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js?unique_id"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-  <title>Orders</title>
+  <title>Meals</title>
 </head>
 
 <body>
@@ -114,18 +114,18 @@
 
   <!-- Start block -->
   <section class="home">
-    <span class="text nav-text" style="padding: 10px 35px">Orders Managments</span>
+    <span class="text nav-text" style="padding: 10px 35px">Meals Managments</span>
     <div style="padding: 20px 20px 20px 30px">
       <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg">
         <div
           class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
           <div class="flex-1 flex items-center space-x-2">
             <h5>
-              <span class="text-gray-500">All Orders:</span>
-              <span class="dark:text-white">{{orders|length}}</span>
+              <span class="text-gray-500">All Meals:</span>
+              <span class="dark:text-white">{{meals|length}}</span>
             </h5>
             <h5 class="text-gray-500 dark:text-gray-400 ml-1">
-              1-8 ({{orders|length}})
+              1-8 ({{meals|length}})
             </h5>
             <button type="button" class="group" data-tooltip-target="results-tooltip">
               <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@
             </button>
             <div id="results-tooltip" role="tooltip"
               class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-              Showing 1-8 of {{Orders|length}} results
+              Showing 1-8 of {{meals|length}} results
               <div class="tooltip-arrow" data-popper-arrow=""></div>
             </div>
           </div>
@@ -183,65 +183,43 @@
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th scope="col" class="p-4">Order ID</th>
-                  <th scope="col" class="p-4">User Id</th>
-                  <th scope="col" class="p-4">status</th>
-                  <th scope="col" class="p-4">Totale</th>
-                  <th scope="col" class="p-4">Delivery address</th>
-                  <th scope="col" class="p-4">Order date</th>
-                  <th scope="col" class="p-4">delivery date</th>
-                  <th scope="col" class="p-4">User Tel</th>
-                  <th scope="col" class="p-4">User Email</th>
+                  <th scope="col" class="p-4">Meal id</th>
+                  <th scope="col" class="p-4">Meal name</th>
+                  <th scope="col" class="p-4">Carbs</th>
+                  <th scope="col" class="p-4">Fat</th>
+                  <th scope="col" class="p-4">Calories</th>
+                  <th scope="col" class="p-4">Protein</th>
+                  <th scope="col" class="p-4">Ingredients</th>
                   <th scope="col" class="p-4">Actions</th>
                 </tr>
               </thead>
               <tbody class="overflow-y-auto">
-                {% for order in orders%}
-                  <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700" id="{{order.id}}">
-                    <th scope="row" class="order_id bg-100 text-primary-800 text-xs font-medium px-4 py-3 dark:bg-900 dark:text-primary-300">
-                      <div class="id flex items-center mr-3">{{order.order_id}}</div>
+                {% for meal in meals%}
+                  <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700" id="{{meal.id}}">
+                    <th scope="row" class="order_id bg-100 text-gray-900 text-xs font-medium px-4 py-3 dark:bg-900 dark:text-primary-300">
+                      <div class="mealid flex items-center mr-3">{{meal.id}}</div>
                     </th>
-                    <th scope="row" class="user_id bg-100 text-primary-800 text-xs font-medium px-4 py-3 dark:bg-900 dark:text-primary-300">
-                      <div class="user_id flex items-center mr-3">{{order.user_id}}</div>
+                    <th scope="row" class="mealname bg-100 text-gray-900 text-xs font-medium px-4 py-3 dark:bg-900 dark:text-primary-300">
+                      <div class="mealname flex items-center mr-3">{{meal.name}}</div>
                     </th>
-                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      <div class="flex items-center">
-                        <div class="h-4 w-4 rounded-full inline-block mr-2 bg-{{order.color}}-600"></div>
-                        <span class="order_status">{{order.status}}</span>
-                        <span class="order_color hidden">{{order.color}}</span>
-                      </div>
+                    <td class="carbs px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {{meal.Carbs}}
                     </td>
-                    <td class="order_totale px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {{order.totale}} $
+                    <td class="Fat px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {{meal.Fat}}
                     </td>
-                    <td class="delivery_address bg-100 text-gray-900 text-xs font-medium px-2 py-0.5 rounded dark:bg-900 dark:text-white">
-                      {{order.delivery_address}}
+                    <td class="calories bg-100 text-gray-900 text-xs font-medium px-2 py-0.5 rounded dark:bg-900 dark:text-white">
+                      {{meal.calories}}
                     </td>
-                    <td class="order_date px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      <div class="flex items-center" style="gap: 5px">
-                        {{order.order_date}}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor"
-                          class="w-5 h-5 text-gray-400 mr-2" aria-hidden="true">
-                          <path
-                            d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
-                        </svg>
-                      </div>
+                    <td class="protein bg-100 text-gray-900 text-xs font-medium px-2 py-0.5 rounded dark:bg-900 dark:text-white">
+                      {{meal.protein}}
                     </td>
-                    <td class="delivery_date px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      <div class="flex items-center" style="gap: 5px">
-                        {{order.delivery_date}}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor"
-                          class="w-5 h-5 text-gray-400 mr-2" aria-hidden="true">
-                          <path
-                            d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
-                        </svg>
-                      </div>
-                    </td>
-                    <td class="tel px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {{order.user_tel}}
-                    </td>
-                    <td class="email px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {{order.user_email}}
+                    <td class="ingredients bg-100 text-gray-900 text-xs font-medium px-2 py-0.5 rounded dark:bg-900 dark:text-white">
+                      {% for ingredient in meal.ingredients %}
+                          <span class="bg-sky-700 text-slate-50 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-sky-900 dark:text-slate-50">
+                            {{ingredient}}
+                          </span>
+                        {% endfor %}
                     </td>
                     <td class="actionstd px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       <div class="flex items-center space-x-4">
@@ -280,14 +258,6 @@
                         </button>
                       </div>
                     </td>
-                    <td id="meals" class="hidden">
-                      {% for meal in order.meals %}
-                        {%for _ in range(meal.quantity)%}
-                          <span class="mealid">{{meal.id}}</span>
-                          <span class="mealname">{{meal.name}}</span>
-                        {% endfor %}
-                      {% endfor %}
-                    </td>
                   </tr>
                 {% endfor %}
               </tbody>
@@ -301,7 +271,7 @@
             Showing
             <span class="font-semibold text-gray-900 dark:text-white">1-8</span>
             of
-            <span class="font-semibold text-gray-900 dark:text-white">{{orders|length}}</span>
+            <span class="font-semibold text-gray-900 dark:text-white">{{meals|length}}</span>
           </span>
           <ul class="pagination-nav inline-flex items-stretch -space-x-px">
             <li class="prev">
@@ -335,67 +305,86 @@
   </section>
   <!-- End block -->
 
-  <!-- add Order -->
-  <div id="createProductModal" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] md:h-full">
+<!-- add Meal -->
+<div id="createProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] md:h-full">
     <div class="relative p-4 w-full max-w-3xl h-full md:h-auto">
-      <!-- Modal content -->
-      <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-        <!-- Modal header -->
-        <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-            Add Order
-          </h3>
-          <button id="createOrderclose" type="button"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-            data-modal-toggle="createProductModal">
-            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd" />
-            </svg>
-            <span class="sr-only">Close modal</span>
-          </button>
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Add Meal</h3>
+                <button id="closeaddmeal" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="createProductModal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="#" id="createMealForm">
+                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                    <div>
+                        <label for="mealname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meal Name</label>
+                        <input type="text" name="mealname" id="mealname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type Meal name" required="">
+                    </div>
+                    <div class="grid gap-4 sm:col-span-2 md:gap-6 sm:grid-cols-4">
+                        <div>
+                            <label for="carbs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Carbs (g)</label>
+                            <input type="number" name="carbs" id="carbs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="12" required="">
+                        </div>
+                        <div>
+                            <label for="fat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fat (g)</label>
+                            <input type="number" name="fat" id="fat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="105" required="">
+                        </div>
+                        <div>
+                          <label for="Calories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Calories (g)</label>
+                          <input type="number" name="Calories" id="Calories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="23" required="">
+                        </div>
+                        <div>
+                            <label for="Proteain" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proteain (g)</label>
+                            <input type="number" name="Proteain" id="Proteain" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="15" required="">
+                        </div>
+                    </div>
+                  </div>
+                <div class="grid gap-4 sm:grid-cols-3">
+                  {% for preference in preferences %}
+                    <div class="flex items-center mr-4">
+                        <input id="{{ preference.id }}" type="checkbox" value="" name="sellingType" class="w-4 h-4 bg-gray-100 rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="inline-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ preference.name }}</label>
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="mb-4 mt-8">
+                    <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meal Image</span>
+                    <div class="flex justify-center items-center w-full">
+                        <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <div class="flex flex-col justify-center items-center pt-5 pb-6">
+                                <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="font-semibold">Click to upload Meal Image</span>
+                                    or drag and drop
+                                </p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                            </div>
+                            <input id="dropzone-file" type="file" class="hidden">
+                        </label>
+                    </div>
+                </div>
+                <div class="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+                    <button type="submit" class="w-full sm:w-auto justify-center text-white inline-flex bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Add Meal</button>
+                    <button data-modal-toggle="createProductModal" type="button" class="w-full justify-center sm:w-auto text-gray-500 inline-flex items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                        <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        Discard
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <!-- Modal body -->
-        <form action="#" id="createOrderForm">
-          <div class="grid gap-4 mb-4 sm:grid-cols-2">
-            <div>
-              <label for="planid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Plan 
-                Id</label>
-              <input type="text" name="planid" id="planid"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Type User Id" required="" />
-            </div>
-            <div>
-              <label for="userid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Id</label>
-              <input type="text" name="userid" id="userid"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Type Plan ID" required="" />
-            </div>
-          </div>
-          <div class="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-            <button type="submit"
-              class="w-full sm:w-auto justify-center text-white inline-flex bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-              Add Order
-            </button>
-            <button data-modal-toggle="createProductModal" type="button"
-              class="w-full justify-center sm:w-auto text-gray-500 inline-flex items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-              <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd" />
-              </svg>
-              Discard
-            </button>
-          </div>
-        </form>
-      </div>
     </div>
-  </div>
+</div>
 
   <!-- update Order -->
   <form action="#" id="drawer-update-product"
@@ -678,13 +667,15 @@
     </div>
   </div>
 
-  <script src="../../../static/js/admin/orders/createorder.js?{{unique_id}}"></script>
+  <script src="../../../static/js/admin/meals/createmeal.js"></script>
+<!-- 
   <script src="../../../static/js/admin/orders/sherorders.js?{{unique_id}}"></script>
   <script src="../../../static/js/admin/orders/editorders.js?{{unique_id}}"></script>
   <script src="../../../static/js/admin/orders/updateorder.js?{{unique_id}}"></script>
   <script src="../../../static/js/admin/orders/deleteorder.js?{{unique_id}}"></script>
   <script src="../../../static/js/admin/orders/readorder.js?{{unique_id}}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js?{{unique_id}}"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js?{{unique_id}}"></script>
 </body>
 <script>
   const body = document.querySelector("body"),
@@ -700,5 +691,4 @@
     }
   });
 </script>
-
 </html>

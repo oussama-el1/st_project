@@ -1,0 +1,31 @@
+<!--
+
+--------------------------------------------
+ingredients : - add ingredient, 
+	            - add ingredients to meal
+--------------------------------------------
+meals : - add meals
+	- add meals to preference
+	- add meals to an order
+--------------------------------------------
+plans : - add plans
+--------------------------------------------
+
+-->
+
+<!-- 
+
+meal id
+
+meal name
+
+Carbs
+
+Fat
+
+calories
+
+protein
+
+
+ -->

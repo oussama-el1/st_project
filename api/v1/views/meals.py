@@ -12,21 +12,12 @@ from flask import abort, jsonify, make_response, request
 from models.meals import Meal
 from models.Preference import Preference
 from models import storage
+import os
+from flask import request, jsonify, abort
+from PIL import Image
+import base64
+import io
 
-
-@app_views.route('/meals', methods=['GET'], strict_slashes=False)
-def get_all_meals():
-    """ All meals available """
-    all_meals = storage.all(Meal).values()
-    res = []
-    for meal in all_meals:
-        data = meal.to_dict()
-        ingredients = []
-        for ingredient in meal.ingredients:
-            ingredients.append(ingredient.ingredientsName)
-        data['ingredients'] = ingredients
-        res.append(data)
-    return jsonify(res)
 
 
 @app_views.route('/meals/<meal_id>', methods=['GET'], strict_slashes=False)
@@ -59,28 +50,6 @@ def delete_meal(meal_id):
         storage.save()
         return jsonify({f"meal - {meal.id}" : "deleted"}), 200
 
-
-@app_views.route('/meals', methods=['POST'], strict_slashes=False)
-def add_meal():
-    """ add Meal """
-    auth = request.authorization
-    if not auth or not authenticate(auth.username, auth.password):
-        return abort(401, 'Authentication required')
-
-    if not request.get_json():
-        abort(400, description="Not a JSON")
-    attr = ["name", "prix", "protein", "calories", "Carbs", "Fat"]
-    ignore = ['id', 'created_at', 'updated_at']
-    data = request.get_json()
-    for key in attr:
-        if key not in data:
-            abort(400, description="Missing args")
-    for key in data.keys():
-        if key in ignore:
-            abort(400, description="Ignored key passed")
-    meal = Meal(**data)
-    meal.save()
-    return make_response(jsonify(meal.to_dict()), 201)
 
 
 @app_views.route('/meals/<meal_id>', methods=['PUT'], strict_slashes=False)
@@ -142,3 +111,78 @@ def meals_by_preferences():
 
     return jsonify(meals), 200
 
+
+@app_views.route('/admin/meals', methods=['GET'], strict_slashes=False)
+def admin_meals():
+    """ get all meals """
+    meals = storage.meals_data()
+
+    return jsonify(meals), 200
+
+
+
+@app_views.route('/meals', methods=['POST'], strict_slashes=False)
+def add_meal():
+    """ add Meal """
+    auth = request.authorization
+    if not auth or not authenticate(auth.username, auth.password):
+        return abort(401, 'Authentication required')
+
+    if not request.get_json():
+        abort(400, description="Not a JSON")
+    
+    data = request.get_json()
+    attr = ["name", "protein", "calories", "Carbs", "Fat"]
+    for key in attr:
+        if key not in data:
+            abort(400, description="Missing args")
+    ignore = ['id', 'created_at', 'updated_at']
+    for key in data.keys():
+        if key in ignore:
+            abort(400, description="Ignored key passed")
+    
+    meal = Meal(**data)
+    meal.save()
+
+    # Save the image
+    image_data = data.get('image')
+    if image_data:
+        save_image(meal.id, image_data)
+    
+    return jsonify(meal.to_dict()), 201
+
+
+
+def save_image(meal_id, image_data):
+    """Save base64 image to file"""
+    image_data = image_data.split(",")[1]
+    image = Image.open(io.BytesIO(base64.b64decode(image_data)))
+
+    # Save the image to the specified directory
+    image_path = f"C:\\Users\\oussama\\Desktop\\stage technique project\\v1\\st_project\\web_dynamic\\static\\images\\meals\\{meal_id}.jpg"
+    image.save(image_path)
+
+
+
+
+@app_views.route('/meals/<meal_id>/preferences', methods=['POST'], strict_slashes=False)
+def add_meal_in_preference(meal_id):
+    """ add meal in preference """
+    meal = storage.get(Meal, meal_id)
+
+    if meal is None:
+        return jsonify({'message': 'Meal Not Found'}), 404
+
+    data = request.get_json()
+    if not data:
+        abort(400, description="Not a JSON")
+
+    Preferenceids = data.get("preferences", None)
+    if not Preferenceids:
+        return jsonify({'message': 'No preferences provided'}), 400
+
+    pref_obj = [storage.get(Preference, p_id) for p_id in Preferenceids]
+    for pref in pref_obj:
+        meal.preferences.append(pref)
+    meal.save()
+    return jsonify({'message': 'Meal added to preferences'}), 200

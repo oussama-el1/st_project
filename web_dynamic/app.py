@@ -307,6 +307,26 @@ def admin_users():
 
 
 
+@app.route('/admin/orders', strict_slashes=False)
+def admin_orders():
+    """ UI for CRUD operation on orders """
+
+    orders = storage.orders_data()
+    return render_template('admin/template/orders.html', orders=orders, unique_id=uuid4())
+
+
+@app.route('/admin/meals', strict_slashes=False)
+def admin_meals():
+    """ UI for CRUD operation on meals """
+    meals = storage.meals_data()
+    preferences = storage.preferences_data()
+    return render_template('admin/template/meals.html',meals=meals, preferences=preferences, unique_id=uuid4())
+
+
+
+
+
+
 
 if __name__ == "__main__":
     host = "0.0.0.0"

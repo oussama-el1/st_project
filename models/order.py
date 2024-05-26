@@ -11,6 +11,7 @@ class Order(BaseData, Base):
     status = Column(Enum('pending', 'confirmed', 'cancelled', 'delivered'), default='pending', nullable=False)
 
     user = relationship("User", back_populates="orders")
+    plan = relationship("Plan", cascade="all, delete", back_populates="orders")
 
     meals = relationship("Meal", secondary="order_meals", back_populates="orders")
     preferences = relationship("Preference", secondary="order_preferences", back_populates="orders")

@@ -7,7 +7,7 @@ from models.meals import Meal
 from models.Preference import Preference
 from models.OrderMeals import OrderMeal
 from collections import Counter
-from models.user import User
+from models.plan import Plan
 from datetime import timedelta, datetime
 
 
@@ -54,6 +54,8 @@ def add_meals_to_order(order_id):
     order_meals = []
     processed_meals = set()
 
+    order.meals = []
+    order.save()
     for meal_id in meals_ids:
         if meal_id in processed_meals:
             continue
@@ -197,11 +199,15 @@ def admin_delete_order(order_id):
     auth = request.authorization
     if not auth or not authenticate(auth.username, auth.password):
         abort(401, 'Authentication required')
-    
+
     order = storage.get(Order, order_id)
     if order is None:
         abort(404, f'{order_id} - Order Not Found')
-    
+
+    plan = storage.get(Plan, order.plan_id)
+    if plan is None:
+        abort(404, f'{order_id} - Plan Not Found')
     storage.delete(order)
+    storage.delete(plan)
     storage.save()
     return jsonify({"message": "Order deleted ..."}), 200

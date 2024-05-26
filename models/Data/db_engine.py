@@ -118,7 +118,7 @@ class DBStorage:
         return count
 
     def month_data(self):
-        # Query count of orders created in the current month
+        """ Query count of orders created in the current month """
         current_month_start = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
         if current_month_start.month == 12:
             current_month_end = datetime.now().replace(day=31, month=current_month_start.month, hour=0, minute=0, second=0, microsecond=0)
@@ -158,7 +158,6 @@ class DBStorage:
             'users': {'count': users_count_in_current_month, 'percentage': users_percentage},
             'sales': {'count': sales_count_in_current_month, 'percentage': sales_percentage}
         }
-
         return monthly_data
 
 
@@ -388,3 +387,9 @@ class DBStorage:
     def get_orders_for_a_user(self, user_id):
         orders = self.__session.query(Order).filter(Order.user_id == user_id).all()
         return orders
+
+
+    def email_users(self, email):
+        """ Users with an email address """
+        user = self.__session.query(User).filter(User.email == email).first()
+        return user

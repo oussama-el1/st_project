@@ -11,6 +11,7 @@ from api.v1.views import app_views, authenticate
 from flask import abort, jsonify, make_response, request
 from models.ingredients import Ingredient 
 from models import storage
+from models.meals import Meal
 
 
 @app_views.route('/ings', methods=['GET'], strict_slashes=False)
@@ -89,3 +90,35 @@ def update_ing(ing_id):
             setattr(ing, k, v)
     ing.save()
     return jsonify(ing.to_dict()), 200
+
+
+
+@app_views.route('/ingredients/meal', methods=['POST'], strict_slashes=False)
+def add_ingredient_to_meal():
+    """ add ingredient to meal """
+    auth = request.authorization
+    if not auth or not authenticate(auth.username, auth.password):
+        return abort(401, 'Authentication required')
+
+    data = request.get_json()
+    if not data:
+        abort(400, description="Not a JSON")
+
+    required_args = ['meal_id', 'ingredient_name']
+
+    for arg in required_args:
+        if arg not in data:
+            abort(400, description=f"Missing arg {arg}")
+
+    meal = storage.get(Meal, data['meal_id'])
+    if meal is None:
+        abort(404, f'{data["meal_id"]} - Meal Not Found')
+
+    ingredient = Ingredient(ingredientsName=data['ingredient_name'])
+
+    ingredient.save()
+    meal.ingredients.append(ingredient)
+
+    storage.save()
+
+    return jsonify(ingredient.to_dict()), 201

@@ -12,6 +12,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css?unique_id" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js?unique_id"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../../../static/js/admin/cruddark.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
   <title>Meals</title>
 </head>
@@ -39,35 +40,35 @@
 
         <ul class="menu-links">
           <li class="nav-link">
-            <a href="index.html">
+            <a href="/admin">
               <i class="bx bx-home-alt icon"></i>
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="users.html">
+            <a href="/admin/users">
               <i class="bx bx-group icon"></i>
               <span class="text nav-text">Users</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="orders.html">
+            <a href="/admin/orders">
               <i class="bx bxs-package icon"></i>
               <span class="text nav-text">Orders</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="product.html">
+            <a href="/admin/meals">
               <i class="bx bx-bowl-hot icon"></i>
-              <span class="text nav-text">Products</span>
+              <span class="text nav-text">Meals</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="index.html">
+            <a href="/admin">
               <i class="bx bx-pie-chart-alt icon"></i>
               <span class="text nav-text">Analytics</span>
             </a>
@@ -158,7 +159,7 @@
                       d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
                   </svg>
                 </div>
-                <input type="text" id="simple-search" placeholder="Search for orders" required=""
+                <input type="text" id="simple-search" placeholder="Search for meals" required=""
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
               </div>
             </form>
@@ -173,7 +174,7 @@
                 <path clip-rule="evenodd" fill-rule="evenodd"
                   d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
               </svg>
-              Add Order
+              Add Meal
             </button>
           </div>
         </div>
@@ -216,13 +217,20 @@
                     </td>
                     <td class="ingredients bg-100 text-gray-900 text-xs font-medium px-2 py-0.5 rounded dark:bg-900 dark:text-white">
                       {% for ingredient in meal.ingredients %}
-                          <span class="bg-sky-700 text-slate-50 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-sky-900 dark:text-slate-50">
+                          <span class="bg-sky-700 text-slate-50 text-xs mt-1 font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-sky-900 dark:text-slate-50">
                             {{ingredient}}
                           </span>
                         {% endfor %}
                     </td>
                     <td class="actionstd px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       <div class="flex items-center space-x-4">
+                        <button type="button"data-modal-target="add-ingredient-modal" data-modal-toggle="add-ingredient-modal"
+                          class="addingredientbutton py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-emerald-700 rounded-lg hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 -ml-0.5" fill="currentColor" aria-hidden="true" viewBox="0 0 448 512">
+                            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+                          </svg>
+                          Add Ingredient
+                        </button>
                         <button type="button" data-drawer-target="drawer-update-product"
                           data-drawer-show="drawer-update-product" aria-controls="drawer-update-product"
                           class="edit-button py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -234,17 +242,6 @@
                               clip-rule="evenodd" />
                           </svg>
                           Edit
-                        </button>
-                        <button type="button" data-drawer-target="drawer-read-product-advanced"
-                          data-drawer-show="drawer-read-product-advanced" aria-controls="drawer-read-product-advanced"
-                          class="Preview-button py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor"
-                            class="w-4 h-4 mr-2 -ml-0.5">
-                            <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" />
-                          </svg>
-                          Preview
                         </button>
                         <button type="button" data-modal-target="delete-modal" data-modal-toggle="delete-modal"
                           class="delete-button flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
@@ -305,6 +302,47 @@
   </section>
   <!-- End block -->
 
+
+
+<!-- add Ingredient Modal -->
+<div id="add-ingredient-modal" tabindex="-1"
+    class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-xl h-full md:h-auto">
+      <!-- Modal content -->
+      <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+          <!-- Modal header -->
+          <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Add Ingredient</h3>
+              <button id="closeingredient" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="add-ingredient-modal">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+          </div>
+          <!-- Modal body -->
+          <form action="#" id="createIngredientForm">
+              <div class="mb-6">
+                  <div>
+                      <label for="ingredientname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingredient Name</label>
+                      <input type="text" name="ingredientname" id="ingredientname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type Meal name" required="">
+                  </div>
+              </div>
+              <div class="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+                  <button type="submit" class="w-full sm:w-auto justify-center text-white inline-flex bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Add Meal</button>
+                  <button data-modal-toggle="add-ingredient-modal" type="button" class="w-full justify-center sm:w-auto text-gray-500 inline-flex items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                      <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                      Discard
+                  </button>
+              </div>
+          </form>
+      </div>
+    </div>
+</div>
+
+
 <!-- add Meal -->
 <div id="createProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] md:h-full">
     <div class="relative p-4 w-full max-w-3xl h-full md:h-auto">
@@ -334,18 +372,18 @@
                         </div>
                         <div>
                             <label for="fat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fat (g)</label>
-                            <input type="number" name="fat" id="fat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="105" required="">
+                            <input type="number" name="fat" id="fat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="40" required="">
                         </div>
                         <div>
                           <label for="Calories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Calories (g)</label>
-                          <input type="number" name="Calories" id="Calories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="23" required="">
+                          <input type="number" name="Calories" id="Calories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="120" required="">
                         </div>
                         <div>
                             <label for="Proteain" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proteain (g)</label>
                             <input type="number" name="Proteain" id="Proteain" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="15" required="">
                         </div>
                     </div>
-                  </div>
+                </div>
                 <div class="grid gap-4 sm:grid-cols-3">
                   {% for preference in preferences %}
                     <div class="flex items-center mr-4">
@@ -386,13 +424,13 @@
     </div>
 </div>
 
-  <!-- update Order -->
-  <form action="#" id="drawer-update-product"
+<!-- update Meal -->
+<form action="#" id="drawer-update-product"
     class="fixed left-20 z-40 h-screen p-6 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
     tabindex="-1" aria-labelledby="drawer-update-product-label" aria-hidden="true" style="width: 630px">
     <h5 id="drawer-label"
       class="inline-flex items-center mb-4 font-bold text-gray-900 uppercase dark:text-gray-400">
-      Update Order &nbsp;[<span class="orderid"></span>]
+      Update Meal &nbsp;[<span id="updatemealid"></span>]
     </h5>
     <button id="drawer-update-product-close" type="button" data-drawer-dismiss="drawer-update-product"
       aria-controls="drawer-update-product"
@@ -405,135 +443,50 @@
       </svg>
       <span class="sr-only">Close menu</span>
     </button>
-    <div class="grid gap-4" style="display: flex; flex-direction: column; margin-top: 30px">
-      <h5 id="drawer-label"
-          class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-          Update Delivery Address &nbsp;<span class="orderid"></span>
-      </h5>
-      <div class="space-y-4 sm:col-span-2 sm:space-y-6">
-        <div class="Addressinfo">
-          <div style="
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-                width: 100%;
-                align-items: center;
-                justify-content: center;
-                margin-top: 15px;
-              ">
-            <div style="width: 275px">
-              <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">State</label>
-              <input type="text" name="state" id="state"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                style="width: 100%" value="New York State" placeholder="Type New Delivery State" required="" />
-            </div>
-            <div style="width: 275px">
-              <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City
-              </label>
-              <input type="text" name="city" id="city"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                style="width: 100%" value="Nyc" placeholder="Type New Delivery City" required="" />
-            </div>
-            <div>
-              <label for="Zipcode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Zip Code</label>
-              <input type="number" name="Zipcode" id="Zipcode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="15" required="">
-            </div>
+    <div class="grid gap-4 mb-4 sm:grid-cols-2 mt-4">
+      <div>
+          <label for="newmealname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meal Name</label>
+          <input type="text" name="newmealname" id="newmealname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type Meal name" required="">
+      </div>
+      <div class="grid gap-4 sm:col-span-2 md:gap-6 sm:grid-cols-4">
+          <div>
+              <label for="newcarbs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Carbs (g)</label>
+              <input type="number" name="newcarbs" id="newcarbs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="12" required="">
           </div>
-          <div style="
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-                width: 100%;
-                align-items: center;
-                justify-content: center;
-                margin-top: 20px;
-              ">
-            <div style="width: 275px">
-              <label for="Street" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Street
-              </label>
-              <input type="Street" name="Street" id="Street"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                style="width: 100%" value="Street takadom" placeholder="Type New Street"
-                required="" />
-            </div>
-            <div style="width: 275px">
-              <label for="Appartement" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Appartement
-              </label>
-              <input type="text" name="Appartement" id="Appartement"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                style="width: 100%" value="Appartement 4 house 284" placeholder="Type new Appartement&House" required="" />
-            </div>
+          <div>
+              <label for="newfat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fat (g)</label>
+              <input type="number" name="newfat" id="newfat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="45" required="">
           </div>
-        </div>
-        <div class="StatusAndDate" style="margin-top: 40px;">
-          <h5 id="drawer-label"
-            class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-            Status & Date &nbsp;<span class="orderid"></span>
-          </h5>
-          <div style="
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-                width: 100%;
-                align-items: center;
-                justify-content: center;
-                margin-top: 20px;
-              ">
-            <div style="width: 200px">
-              <label for="orderstatus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-              <select id="orderstatus" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                <option selected="pending">Pending</option>
-                <option value="confirmed">Confirmed</option>
-                <option value="cancelled">Cancelled</option>
-                <option value="delivered">Delivered</option>
-              </select>
-            </div>
-            <div style="width: 350px; position: relative">
-              <label
-                for="datepicker"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Delivred At
-              </label>
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                  style="margin-top: 25px"
-                  fill="currentColor"
-                  viewbox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </div>
-              <input
-                datepicker=""
-                id="datepicker"
-                type="text"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 datepicker-input"
-                style="width: 100%"
-                placeholder="Select Created Date"
-              />
-            </div>
-        </div>
-        </div>
-        <div class="MealsInOrder" style="margin-top: 40px;">
-            <h5 id="drawer-label"
-              class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-              Meals In Order &nbsp;
-            </h5>
-            <div class="mealscontainer grid grid-cols-2 gap-4 mb-4 sm:mb-5 mt-4">
-            </div>
-        </div>
+          <div>
+            <label for="newCalories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Calories (g)</label>
+            <input type="number" name="newCalories" id="newCalories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="120" required="">
+          </div>
+          <div>
+              <label for="newProteain" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Proteain (g)</label>
+              <input type="number" name="newProteain" id="newProteain" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="15" required="">
+          </div>
       </div>
     </div>
-    <div class="grid grid-cols-2 mt-6 sm:w-1/2" style="
+    <h5 id="drawer-label" style="margin-top: 30px;"
+      class="inline-flex items-center mb-4 font-bold text-gray-900 uppercase dark:text-gray-400">
+      This Meal in this Preferences : &nbsp;
+    </h5>
+    <div class="grid gap-4 sm:grid-cols-3 mt-4">
+      {% for preference in preferences %}
+        <div class="flex items-center mr-2">
+            <input id="{{ preference.id }}" type="checkbox" value="" data-name="{{ preference.name }}" name="sellingType" class="w-4 h-4 bg-gray-100 rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="{{ preference.id }}" for="inline-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ preference.name }}</label>
+        </div>
+      {% endfor %}
+    </div>
+    <h5 id="drawer-label" style="margin-top: 30px;"
+      class="inline-flex items-center mb-4 font-bold text-gray-900 uppercase dark:text-gray-400">
+      Ingredients : &nbsp;
+    </h5>
+    <div class="grid gap-4 sm:grid-cols-3 mt-2" id="ingredient-checkboxes">
+      <!-- Ingredients checkboxes will be appended here by JavaScript -->
+    </div>
+    <div class="grid grid-cols-2 mt-[40px] sm:w-1/2" style="
           display: flex;
           flex-direction: row;
           gap: 20px;
@@ -541,7 +494,7 @@
           justify-content: center;
           width: 100%;
         ">
-      <button style="width: 100px"
+      <button style="width: 100px" type="submit"
         class="inline-flex items-center px-4 py-2 bg-primary-600 transition ease-in-out delay-75 hover:bg-primary-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110">
         <svg stroke="currentColor" fill="white" viewBox="0 0 448 512" class="h-5 w-5 mr-2"
           xmlns="http://www.w3.org/2000/svg">
@@ -551,86 +504,10 @@
         Submit
       </button>
     </div>
-  </form>
+</form>
 
-  <!-- Preview Modal -->
-  <div id="drawer-read-product-advanced"
-    class="overflow-y-auto fixed top-0 left-20 z-40 p-6 w-full max-w-lg h-screen bg-white transition-transform -translate-x-full dark:bg-gray-800"
-    tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
-    <div>
-      <h5 id="drawer-label"
-        class="inline-flex items-center mb-4 font-bold text-gray-900 uppercase dark:text-gray-400">
-        Preview Order &nbsp;[<span class="orderid"></span>]
-      </h5>
-    </div>
-    <button type="button" data-drawer-dismiss="drawer-read-product-advanced" aria-controls="drawer-read-product-advanced" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
-        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-        <span class="sr-only">Close menu</span>
-    </button>
-    <div class="MealsInOrder" style="margin-top: 40px;">
-      <h5 id="drawer-label"
-        class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-        Meals In Order &nbsp;
-      </h5>
-      <div class="mealsreadcontainer grid grid-cols-2 gap-4 mb-4 sm:mb-5 mt-4">
-      </div>
-    </div>
-    <dl class="grid grid-cols-2 gap-4 mb-4">
-        <div class="col-span-2 p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 sm:col-span-1 dark:border-gray-600">
-            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Shipping</dt>
-            <dd class="flex items-center text-gray-500 dark:text-gray-400" style="display: flex; flex-direction: row; align-items: center; justify-content: center">
-                <svg class="w-4 h-4 mr-1.5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                </svg>
-                <span id="city"></span>
-            </dd>
-        </div>
-        <div class="col-span-2 p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 sm:col-span-1 dark:border-gray-600">
-            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"> Order Status</dt>
-            <dd class="flex items-center space-x-2 font-light text-gray-500 dark:text-gray-400" style="display: flex; flex-direction: row; align-items: center; justify-content: center">
-                <div id="orderstatuscolor" class="flex-shrink-0 w-4 h-4 rounded-full"></div>
-                <span id="status"> Pending </span>
-            </dd>
-        </div>
-        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">ORDER Date</dt>
-            <dd class="text-gray-500 dark:text-gray-400">
-                <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                  <span id="orderdate">22/12/2022</span>
-                </span>
-            </dd>
-        </div>
-        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-          <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Delivery Date</dt>
-          <dd class="text-gray-500 dark:text-gray-400">
-              <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                <span id="deliverydate">24/12/2022</span>
-              </span>
-          </dd>
-        </div>
-        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-          <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Order Totale</dt>
-          <dd class="text-gray-500 dark:text-gray-400" id="ordertotale"></dd>
-        </div>
-        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-          <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">User ID</dt>
-          <dd class="text-gray-500 dark:text-gray-400" id="userid"></dd>
-        </div>
-        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-          <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">User Email</dt>
-          <dd class="text-gray-500 text-sm dark:text-gray-400" id="useremail"></dd>
-        </div>
-        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-          <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">User Tel</dt>
-          <dd class="text-gray-500 dark:text-gray-400" id="usertel"></dd>
-        </div>
-      </dl>
-  </div>
-
-  <!-- Delete Modal -->
-  <div id="delete-modal" tabindex="-1"
+<!-- Delete meal Modal -->
+<div id="delete-modal" tabindex="-1"
     class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full h-auto max-w-md max-h-full">
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -652,9 +529,9 @@
               d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-            Are you sure you want to delete Order <span class="orderid"></span>?
+            Are you sure you want to delete Meal <span class="deletemealid"></span>?
           </h3>
-          <button id="deleteorder" data-modal-toggle="delete-modal" type="button"
+          <button id="deltemeal" data-modal-toggle="delete-modal" type="button"
             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
             Yes, I'm sure
           </button>
@@ -665,30 +542,15 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 
-  <script src="../../../static/js/admin/meals/createmeal.js"></script>
-<!-- 
-  <script src="../../../static/js/admin/orders/sherorders.js?{{unique_id}}"></script>
-  <script src="../../../static/js/admin/orders/editorders.js?{{unique_id}}"></script>
-  <script src="../../../static/js/admin/orders/updateorder.js?{{unique_id}}"></script>
-  <script src="../../../static/js/admin/orders/deleteorder.js?{{unique_id}}"></script>
-  <script src="../../../static/js/admin/orders/readorder.js?{{unique_id}}"></script>
--->
+<script src="../../../static/js/admin/meals/createmeal.js"></script>
+<script src="../../../static/js/admin/meals/updatemeal.js"></script>
+<script src="../../../static/js/admin/meals/ingredientomeal.js"></script>
+<script src="../../../static/js/admin/meals/addchechedtopreference.js"></script>
+<script src="../../../static/js/admin/meals/editmeals.js"></script>
+<script src="../../../static/js/admin/meals/sherchmeal.js"></script>
+<script src="../../../static/js/admin/meals/deletemeal.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js?{{unique_id}}"></script>
 </body>
-<script>
-  const body = document.querySelector("body"),
-    sidebar = body.querySelector("nav"),
-    modeSwitch = body.querySelector(".toggle-switch"),
-    modeText = body.querySelector(".mode-text");
-  modeSwitch.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    if (body.classList.contains("dark")) {
-      modeText.innerText = "Light mode";
-    } else {
-      modeText.innerText = "Dark mode";
-    }
-  });
-</script>
 </html>

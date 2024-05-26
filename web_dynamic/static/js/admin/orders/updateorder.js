@@ -50,7 +50,6 @@ form.addEventListener('submit', async function (event) {
         } else {
             const errorData = await response.json();
             console.error('Error updating Order:', errorData);
-            // Handle error
             showNotification('Error updating Order', 'red');
         }
     } catch (error) {

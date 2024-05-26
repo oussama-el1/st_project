@@ -39,7 +39,7 @@ previewButtons.forEach(button => {
             mealDiv.classList.add('onemealread', 'p-2', 'w-auto', 'h-[200px]', 'bg-gray-100', 'rounded-lg', 'dark:bg-gray-700', 'relative');
 
             const mealImage = document.createElement('img');
-            mealImage.classList.add('rounded-lg', 'h-[150px]', 'w-full');
+            mealImage.classList.add('meal-image', 'rounded-lg');
             mealImage.src = `../../../static/images/meals/${mealID.textContent}.jpg`
             mealImage.alt = 'Meal Image';
 

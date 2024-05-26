@@ -18,4 +18,7 @@ class Meal(BaseData, Base):
     orders = relationship("Order", secondary="order_meals", back_populates="meals")
     ingredients = relationship("Ingredient", secondary="meal_ingredients", back_populates="meals")
     preferences = relationship("Preference", secondary="meal_preferences", back_populates="meals")
-    order_meals = relationship("OrderMeal", backref="meal_in_order")
+
+    order_meals = relationship("OrderMeal", cascade="all, delete")
+    meal_ingredients = relationship("MealIngredient", cascade="all, delete")
+    meal_preferences = relationship("MealPreference", cascade="all, delete")

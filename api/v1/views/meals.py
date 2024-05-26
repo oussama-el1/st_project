@@ -8,11 +8,11 @@
 """
 
 from api.v1.views import app_views, authenticate
-from flask import abort, jsonify, make_response, request
+from flask import abort, jsonify, request
 from models.meals import Meal
 from models.Preference import Preference
+from models.ingredients import Ingredient
 from models import storage
-import os
 from flask import request, jsonify, abort
 from PIL import Image
 import base64
@@ -68,8 +68,34 @@ def update_meal(meal_id):
     for k, v in data.items():
         if k in attr and k not in ignore:
             setattr(meal, k, v)
+
+    Preferencesids = data.get("preferences", None)
+    if Preferencesids is not None:
+        if Preferencesids == []:
+            meal.preferences = []
+        else :
+            meal.preferences = []
+            storage.save()
+            for Pref_id in Preferencesids:
+                preference = storage.get(Preference, Pref_id)
+                if preference is None:
+                    return jsonify({'message': f'Preference [{Pref_id}] Not Found'}), 404
+                meal.preferences.append(preference)
+
+    ingredients = data.get("ingredients", None)
+    if ingredients is not None:
+        if ingredients == []:
+            meal.ingredients = []
+        else :
+            meal.ingredients = []
+            storage.save()
+            for ing_id in ingredients:
+                ingredient = storage.get(Ingredient, ing_id)
+                if ingredient is None:
+                    return jsonify({'message': f'Ingredient [{ing_id}] Not Found'}), 404
+                meal.ingredients.append(ingredient)
     meal.save()
-    return jsonify(meal.to_dict()), 200
+    return jsonify({"message" : "meal updated"}), 200
 
 
 
@@ -186,3 +212,17 @@ def add_meal_in_preference(meal_id):
         meal.preferences.append(pref)
     meal.save()
     return jsonify({'message': 'Meal added to preferences'}), 200
+
+
+@app_views.route('/meals/<meal_id>/ingredients', methods=['GET'], strict_slashes=False)
+def get_meal_ingredients(meal_id):
+    """ get meal ingredients """
+    meal = storage.get(Meal, meal_id)
+
+    if meal is None:
+        return jsonify({'message': 'Meal Not Found'}), 404
+
+    ingredients = {}
+    for ing in meal.ingredients:
+        ingredients[ing.id] = ing.ingredientsName
+    return jsonify(ingredients), 200

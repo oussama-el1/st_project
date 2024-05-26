@@ -1,128 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../static/css/homestyle.css?{{unique_id}}" />
-  <title>Nearshore Meals: 20 Meals For Your Health Life</title>
-  <style>
-    @font-face {
-      font-family: "Agrandir";
-      src: url(fonts/PPAgrandir-GrandLight.otf) format(otf);
-    }
-  </style>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloFresh</title>
+    <link rel="stylesheet" href="../static/css/styles.css?{{unique_id}}">
 </head>
-
 <body>
-  <nav>
-    <ul>
-      <li>
-        <a href="#"><img src="../static/images/NEARSHORE.png?{{unique_id}}" /></a>
-      </li>
-      <li><a href="#">Our Plans</a></li>
-      <li>
-        <a href="#">About Us</a>
-        <ul class="dropdown">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Our Stories</a></li>
-          <li><a href="#">How It Works</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Our Menus</a>
-        <ul class="dropdown">
-          <li><a href="#">Our Menus</a></li>
-          <li><a href="#">Cookbook</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-  <div>
-    <p class="new">
-      New! Free Dessert For Life
-      <span>One per box with active subscription</span>
-    </p>
-  </div>
-  <div class="first-phase">
-    <div class="too">
-      <p class="treat">Treat yourself with Morocann’s #1 Meal Kit.</p>
-      <p class="offering">
-        Now offering
-        <strong> 16 Free Meals and Free Dessert for Life.</strong>
-      </p>
-      <!-- Modify the button to link to the offer page -->
-      <a href="{{ url_for('plans') }}" class="offer-link">
-        <button class="offer">Get Offer</button>
-      </a>
-      <p class="explain">
-        *Applied as discount across 9 boxes, new subscriptions only, and
-        varies by plan. One free dessert item per box with an active
-        subscription.
-      </p>
-    </div>
-    <div class="image-first">
-      <img src="../static/images/banner.jpeg?{{unique_id}}" class="cook" />
-    </div>
-  </div>
-  <section class="why">
-    <div class="titre-why">
-      <h2 class="WhyNearshoreMeals">Why NearshoreMeals</h2>
-    </div>
-    <div class="globale-all">
-      <div class="globale-div">
-        <div class="first-box">
-          <div class="box1">
-            <div class="icone1">
-              <img src="../static/images/why-hellofresh-icn1.png?{{unique_id}}" />
+    <header>
+        <div class="header-container">
+            <button class="menu-icon" onclick="toggleMenu()">☰</button>
+            <div class="logo">
+                <img src="https://logowik.com/content/uploads/images/hellofresh-new8944.jpg" alt="HelloFresh Logo">
             </div>
-            <h3>No skimpin’ on the chicken!</h3>
-            <p class="allbox">Or steak, or fish, or plant protein.</p>
-          </div>
-        </div>
-        <div class="first-box">
-          <div class="box1">
-            <div class="icone1">
-              <img src="../static/images/why-hellofresh-icn2.png?{{unique_id}}" />
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="#">Our Plans</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Menus</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">HelloFresh for Teams</a></li>
+                </ul>
+            </nav>
+            <div class="login-cart">
+                <a href="/plans" class="login-button">Order Meal</a>
+                <a href="#" class="cart-icon">🛒</a>
             </div>
-            <h3>No commitment whatsoever</h3>
-            <p class="allbox">Skipping weeks or cancelling is super easy.</p>
-          </div>
         </div>
-        <div class="first-box">
-          <div class="box1">
-            <div class="icone1">
-              <img src="../static/images/why-hellofresh-icn3.png?{{unique_id}}" />
+    </header>
+    <main>
+        <section class="offer-banner">
+            <h2 style="margin: 0;">NEW! FREE DESSERT FOR LIFE</h2>
+            <p style="margin: 0;">One per box with active subscription</p>
+        </section>
+        <section class="main-content">
+            <div class="text-content">
+                <h1>Treat yourself with America’s #1 Meal Kit.</h1>
+                <p style="margin: 0;">Now offering <strong>16 Free Meals and Free Dessert for Life.</strong></p>
+                <a href="/plans">
+                    <button class="offer-button" style="margin-top: 20px; margin-bottom: 22px;">
+                        Get Offer
+                    </button>
+                </a>
+                <p class="disclaimer">*Applied as discount across 9 boxes, new subscriptions only, and varies by plan. One free dessert item per box with an active subscription.</p>
             </div>
-            <h3>The most 5-star reviews</h3>
-            <p class="allbox">
-              Our huge recipe selection wows week after week.
-            </p>
-          </div>
-        </div>
-        <div class="first-box">
-          <div class="box1">
-            <div class="icone1">
-              <img src="../static/images/why-hellofresh-icn1.png?{{unique_id}}" />
+            <div class="image-content">
+                <img src="https://cdn.hellofresh.com/us/EarnedMedia/OpenGraphImages/HelloFresh_OpenGraph.png" alt="Promotional Image">
             </div>
-            <h3>Fresh and affordable</h3>
-            <p class="allbox">
-              Chef-created deliciousness from $9.99 per meal.
-            </p>
-          </div>
+        </section>
+        <section class="why-hellofresh">
+            <h2>Why HelloFresh?</h2>
+            <div class="features">
+                <div class="feature">
+                    <img src="https://img.hellofresh.com/f_auto,fl_lossy,q_auto/hellofresh_website/us/cms/homepage/How%20It%20Works%20Icons/why-hellofresh-icn1.png" alt="Icon 1">
+                    <h3>No skimpin’ on the chicken!</h3>
+                    <p>Or steak, or fish, or plant protein.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://img.hellofresh.com/f_auto,fl_lossy,q_auto/hellofresh_website/us/cms/homepage/How%20It%20Works%20Icons/why-hellofresh-icn2.png" alt="Icon 2">
+                    <h3>No commitment whatsoever</h3>
+                    <p>Skipping weeks or cancelling is super easy.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://img.hellofresh.com/f_auto,fl_lossy,q_auto/hellofresh_website/us/cms/homepage/How%20It%20Works%20Icons/why-hellofresh-icn3.png" alt="Icon 3">
+                    <h3>The most 5-star reviews</h3>
+                    <p>Our huge recipe selection wows week after week.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://img.hellofresh.com/f_auto,fl_lossy,q_auto/hellofresh_website/us/cms/homepage/How%20It%20Works%20Icons/why-hellofresh-icn4.png" alt="Icon 4">
+                    <h3>Fresh and affordable</h3>
+                    <p>Chef-created deliciousness from $9.99 per meal.</p>
+                </div>
+            </div>
+            <a href="/plans">
+                <button class="offer-button" style="  margin-top: 30px;">
+                    Get Offer
+                </button>
+            </a>
+        </section>
+        <section class="slider">
+            <h2 class="slider-heading">Choose from 100+ weekly menu and market items
+            </h2>
+            <span class="disclaimerprime">Plus, discover the latest seasonal and convenience items at HelloFresh Market for an added touch of culinary inspiration.</span>
+            <div class="c">
+                <input type="radio" name="a" id="cr-1" checked>
+                <label for="cr-1" style="--hue: 82"></label>
+                <div class="ci" style="--z: 4">
+                    <img src="../static/images/Meal Kit Delivery Plans & Food Boxes _ HelloFresh (1).jpg" alt="Snow on leafs">
+                </div>
+        
+                <input type="radio" name="a" id="cr-2">
+                <label for="cr-2" style="--hue: 82"></label>
+                <div class="ci" style="--z: 3">
+                    <img src="../static/images/Idées de recettes avec HelloFresh - Repas simples et rapides.jpg" alt="Trees">
+                </div>
+        
+                <input type="radio" name="a" id="cr-3">
+                <label for="cr-3" style="--hue: 82"></label>
+                <div class="ci" style="--z: 2">
+                    <img src="../static/images/How To Prepare A Balanced Meal — The College Nutritionist.jpg" alt="Mountains and houses">
+                </div>
+        
+                <input type="radio" name="a" id="cr-4">
+                <label for="cr-4" style="--hue: 82"></label>
+                <div class="ci" style="--z: 1">
+                    <img src="../static/images/HelloFresh®_ 10 Free Meals - Free Dessert For Life.jpg" alt="Sky and mountains">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733561.png" alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Subscribe to our Newsletter</h4>
+                    <a href="/plans">
+                        <button class="offer-button">
+                            Get Offer
+                        </button>
+                    </a>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="link1">
-      <div>
-        <a href="{{ url_for('plans') }}" class="offer-link" style="text-decoration: none">
-          <button class="Get-offer2">Get Offer</button>
-        </a>
-      </div>
-    </div>
-  </section>
+        <div class="footer-bottom">
+            <p>&copy; 2024 HelloFresh. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
-
 </html>
+<script>
+function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('show');
+}
+</script>

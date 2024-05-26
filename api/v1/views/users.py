@@ -98,14 +98,11 @@ def delete_users(user_id):
     if not user:
         abort(404)
 
-
     # Delete the user and all associated rows
     storage.delete(user)
     storage.save()
 
     return make_response(jsonify({"message": f"User <{user_id}> deleted successfully"}), 200)
-
-
 
 
 
@@ -138,3 +135,18 @@ def user_data_for_admin():
 @app_views.route('/admin/users/simple', methods=['GET'], strict_slashes=False)
 def user_simple_data_for_admin():
     return jsonify({'users': storage.users_data()})
+
+
+
+
+@app_views.route('/users/validemail', methods=['POST'], strict_slashes=False)
+def valid_email():
+    """ check if email is exist """
+    deta = request.get_json()
+    if not deta:
+        abort(400, description="Not a JSON")
+
+    user = storage.email_users(deta['email'])
+    if user:
+        return jsonify({"message": "This email is already registered"}), 400
+    return jsonify({"message": "This email is available for registration"}), 200

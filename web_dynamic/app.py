@@ -324,8 +324,11 @@ def admin_meals():
 
 
 
-
-
+@app.route('/admin/settings', strict_slashes=False)
+def admin_setting():
+    """ UI for admin settings """
+    """ data = storage.admin_data() """
+    return render_template('admin/template/settings.html', unique_id=uuid4())
 
 
 if __name__ == "__main__":

@@ -12,3 +12,4 @@ class Plan(BaseData, Base):
     boxtotale = Column(Float, nullable=False)
     
     users = relationship("User", secondary="orders", back_populates="plans")
+    orders = relationship("Order", cascade="all, delete", back_populates="plan")

@@ -1,145 +1,167 @@
-/* Your existing CSS for larger devices */
+
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+  text-align: center;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.container {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
+  box-sizing: border-box;
+  padding: 30px;
+  margin: 50px;
+  border-radius: 15px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.container h2 {
+  color: rgb(36, 36, 36);
+  font-family: "Agrandir, Verdana, Geneva, sans-serif";
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.subcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  margin-bottom: 50px;
+}
+
+.form-container {
+  box-sizing: border-box;
+  display: block;
+  width: 380.003px;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.image-container img {
+  aspect-ratio: auto 375 / 100;
+  border-radius: 8px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.registration-btn[disabled] {
+  background-color: #cccccc; /* Change background color to gray */
+  color: #999999; /* Change text color to light gray */
+  cursor: not-allowed; /* Change cursor to indicate that button is not clickable */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"] {
+  background-color: rgb(255, 255, 255);
+  border: 1.11111px solid rgb(101, 101, 101);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: rgb(36, 36, 36);
+  display: block;
+  font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 47.9861px;
+  line-height: 18.4px;
+  margin: 0;
+  outline: none;
+  padding: 12px;
+  text-align: left;
+  width: 100%;
+}
+
+button {
+  background-color: rgb(6, 122, 70);
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: flex;
+  font-family: "Times New Roman";
+  font-size: 16px;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 24px;
+  margin-bottom: 10px;
+  outline: none;
+  padding: 12px 24px;
+  text-align: center;
+  width: 100%;
+}
+
+button:hover {
+  background-color: rgb(8, 96, 57);
+}
+
+.text {
+  color: rgb(45, 44, 44);
+  font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 420px) {
   .container {
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
-    box-sizing: border-box;
-    padding: 30px;
-    margin: 50px;
-    border-radius: 15px;
+      margin: 20px;
   }
-  
-  .container h2 {
-    color: rgb(36, 36, 36);
-    font-family: "Agrandir, Verdana, Geneva, sans-serif";
-    font-size: 32px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
+
   .subcontainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 100px;
-    margin-bottom: 50px;
+      flex-direction: column;
+      gap: 20px;
   }
-  
+
   .form-container {
-    box-sizing: border-box;
-    display: block;
-    width: 380.003px;
+      width: 100%;
   }
-  
-  .image-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+
+  input[type="email"],
+  input[type="password"],
+  button {
+      margin-bottom: 15px;
   }
-  
-  .image-container img {
-    aspect-ratio: auto 375 / 100;
-    border-radius: 8px;
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
-  .registration-btn[disabled] {
-    background-color: #cccccc; /* Change background color to gray */
-    color: #999999; /* Change text color to light gray */
-    cursor: not-allowed; /* Change cursor to indicate that button is not clickable */
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
+
   input[type="email"],
   input[type="password"] {
-    background-color: rgb(255, 255, 255);
-    border: 1.11111px solid rgb(101, 101, 101);
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: rgb(36, 36, 36);
-    display: block;
-    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    height: 47.9861px;
-    line-height: 18.4px;
-    margin: 0;
-    outline: none;
-    padding: 12px;
-    text-align: left;
-    width: 100%;
+      height: 40px;
   }
-  
-  button {
-    background-color: rgb(6, 122, 70);
-    border: none;
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    display: flex;
-    font-family: "Times New Roman";
-    font-size: 16px;
-    font-weight: 400;
-    justify-content: center;
-    line-height: 24px;
-    margin-bottom: 10px;
-    outline: none;
-    padding: 12px 24px;
-    text-align: center;
-    width: 100%;
-  }
-  
-  button:hover {
-    background-color: rgb(8, 96, 57);
-  }
-  
-  .text {
-    color: rgb(45, 44, 44);
-    font-family: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  /* Use the new CSS for smaller devices */
-  @media (max-width: 420px) {
-    /* Place the CSS provided for smaller devices here */
-    .container {
-      margin: 20px; /* Adjusted margin for smaller devices */
-    }
-  
-    .subcontainer {
-      flex-direction: column; /* Adjusted flex direction for smaller devices */
-      gap: 20px; /* Adjusted gap for smaller devices */
-    }
-  
-    .form-container {
-      width: 100%; /* Adjusted width for smaller devices */
-    }
-  
-    input[type="email"],
-    input[type="password"],
-    button {
-      margin-bottom: 15px; /* Adjusted margin for smaller devices */
-    }
-  
-    input[type="email"],
-    input[type="password"] {
-      height: 40px; /* Adjusted height for smaller devices */
-    }
-  }
-  
+}

@@ -12,7 +12,18 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css?unique_id" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js?unique_id"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js?unique_id"></script>
+  <script src="../../../static/js/admin/cruddark.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <style>
+    .meal-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      height: 150px;
+  }
+  </style>
   <title>Orders</title>
 </head>
 
@@ -39,30 +50,30 @@
 
         <ul class="menu-links">
           <li class="nav-link">
-            <a href="index.html">
+            <a href="/admin">
               <i class="bx bx-home-alt icon"></i>
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="users.html">
+            <a href="/admin/users">
               <i class="bx bx-group icon"></i>
               <span class="text nav-text">Users</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="orders.html">
+            <a href="/admin/orders">
               <i class="bx bxs-package icon"></i>
               <span class="text nav-text">Orders</span>
             </a>
           </li>
 
           <li class="nav-link">
-            <a href="product.html">
+            <a href="/admin/meals">
               <i class="bx bx-bowl-hot icon"></i>
-              <span class="text nav-text">Products</span>
+              <span class="text nav-text">Meals</span>
             </a>
           </li>
 
@@ -686,19 +697,5 @@
   <script src="../../../static/js/admin/orders/readorder.js?{{unique_id}}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js?{{unique_id}}"></script>
 </body>
-<script>
-  const body = document.querySelector("body"),
-    sidebar = body.querySelector("nav"),
-    modeSwitch = body.querySelector(".toggle-switch"),
-    modeText = body.querySelector(".mode-text");
-  modeSwitch.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    if (body.classList.contains("dark")) {
-      modeText.innerText = "Light mode";
-    } else {
-      modeText.innerText = "Dark mode";
-    }
-  });
-</script>
 
 </html>

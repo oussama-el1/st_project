@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../../static/css/dashbord.css?{{unique_id}}">
+
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Dark Mode -->
+  <script src="../../../static/js/admin/dashborddark.js"></script>
+  <title>Settings</title>
+</head>
+<body>
+  <nav class="sidebar close">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="../../../static/images/logo.png" alt="">
+        </span>
+
+        <div class="text logo-text">
+          <span class="name">Oussama</span>
+          <span class="profession">Admin Role</span>
+        </div>
+      </div>
+
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+
+        <li class="search-box">
+          <i class='bx bx-search icon'></i>
+          <input type="text" placeholder="Search ...">
+        </li>
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="/admin">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="/admin/users">
+              <i class='bx bx-group icon'></i>
+              <span class="text nav-text">Users</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="/admin/orders">
+              <i class='bx bxs-package icon'></i>
+              <span class="text nav-text">Orders</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="/admin/meals">
+              <i class='bx bx-bowl-hot icon'></i>
+              <span class="text nav-text">Meals</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="/admin">
+              <i class='bx bx-pie-chart-alt icon'></i>
+              <span class="text nav-text">Analytics</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="/admin/settings">
+              <i class='bx bx-cog icon'></i>
+              <span class="text nav-text">Settings</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-help-circle icon'></i>
+              <span class="text nav-text">Help</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a href="#">
+            <i class='bx bx-log-out icon'></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
+
+        <li class="mode">
+          <div class="sun-moon">
+            <i class='bx bx-moon icon moon'></i>
+            <i class='bx bx-sun icon sun'></i>
+          </div>
+          <span class="mode-text text">Dark mode</span>
+
+          <div class="toggle-switch">
+            <span class="switch"></span>
+          </div>
+        </li>
+
+      </div>
+    </div>
+
+  </nav>
+  <section class="home">
+      <div class="profile-container">
+        <div class="profile-card">
+          <div class="profile-header" style="background-image: url('../../../static/images/banner.jpeg');">
+            <img src="../../../static/images/logo.png" alt="Profile Picture" class="profile-image">
+          </div>
+          <div class="profile-info">
+            <h2>Oussama Elhadraoui</h2>
+            <p><i class='bx bx-map'></i> Northridge, California(CA), 91326, USA</p>
+            <p><i class='bx bx-calendar'></i> Age: 24</p>
+            <p><i class='bx bx-check-circle'></i> Status: Active</p>
+            <p><i class='bx bx-male'></i> Gender: Male</p>
+            <p><i class='bx bx-envelope'></i> Email: clay.jensen@email.com</p>
+            <p><i class='bx bx-phone'></i> Contact: (+61) 45687 45687</p>
+            <p><i class='bx bx-world'></i> Region: Central US</p>
+            <p><i class='bx bx-cog'></i> Role: Administrator</p>
+            <button class="edit-profile-btn">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+  </section>
+  <div class="profile-dialog">
+      <div class="profile-dialog-content">
+        <span class="close-btn">&times;</span>
+        <h2>Edit Profile</h2>
+        <form id="edit-profile-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" value="Clay Jensen">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" value="1998-04-09">
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender">
+            <option value="Male" selected>Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <label for="role">Role:</label>
+          <input type="text" id="role" name="role" value="Administrator">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" value="clay.jensen@email.com">
+          <label for="contact">Contact:</label>
+          <input type="text" id="contact" name="contact" value="(+61) (45687) (45687)">
+          <label for="region">Region:</label>
+          <input type="text" id="region" name="region" value="Central US">
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" value="Northridge, California(CA), 91326, USA">
+          <button type="submit" class="save-btn">Save</button>
+          <button type="button" class="discard-btn">Discard changes</button>
+        </form>
+      </div>
+  </div>
+</body>
+</html>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const editProfileBtn = document.querySelector('.edit-profile-btn');
+    const profileDialog = document.querySelector('.profile-dialog');
+    const closeBtn = document.querySelector('.close-btn');
+    const discardBtn = document.querySelector('.discard-btn');
+  
+    editProfileBtn.addEventListener('click', function() {
+      profileDialog.style.display = 'flex';
+    });
+  
+    closeBtn.addEventListener('click', function() {
+      profileDialog.style.display = 'none';
+    });
+  
+    discardBtn.addEventListener('click', function() {
+      profileDialog.style.display = 'none';
+    });
+  
+    window.addEventListener('click', function(event) {
+      if (event.target == profileDialog) {
+        profileDialog.style.display = 'none';
+      }
+    });
+  });
+  
+</script>
+<style>
+  /* Add this to your existing CSS */
+
+.profile-info {
+  margin-top: 30px;
+  margin-left: 20px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h2 {
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-info p {
+  margin: 10px 0;
+  color: #555;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.profile-info p i {
+  margin-right: 10px;
+  color: #007bff;
+  font-size: 20px;
+}
+
+.edit-profile-btn {
+  display: inline-block;
+  margin-top: 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.edit-profile-btn:hover {
+  background: #0056b3;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 800px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.profile-header {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  position: absolute;
+  bottom: -75px;
+  left: 20px;
+}
+
+.profile-info {
+  padding: 40px;
+}
+
+.profile-info h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.profile-info p {
+  font-size: 18px;
+  color: #555;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.profile-info p i {
+  margin-right: 10px;
+  color: #007bff;
+  font-size: 24px;
+}
+
+.edit-profile-btn {
+  display: inline-block;
+  margin-top: 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.edit-profile-btn:hover {
+  background: #0056b3;
+}
+</style>

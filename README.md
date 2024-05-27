@@ -1,6 +1,6 @@
-# 🍽️ Meal Kit Portfolio Project : NershorMeals
+# 🍽️ Meal Kit Project
 
-Welcome to the Meal Kit Portfolio project! This project is designed to showcase a meal kit delivery service application, where users can customize their meal plans, register an account, provide their preferences, and order meals for delivery. The application is hosted at [NershorMeals](http://staycenter.tech/home).
+Welcome to the Meal Kit Portfolio project! This project is designed to showcase a meal kit delivery service application, where users can customize their meal plans, register an account, provide their preferences, and order meals for delivery.
 
 ## 📋 Plan
 

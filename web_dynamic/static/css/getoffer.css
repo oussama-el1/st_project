@@ -1,4 +1,3 @@
-/* General Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0px;
@@ -71,43 +70,33 @@ h3 {
 .preference-card {
   display: inline-block;
   width: calc(40% - 20px);
-  /* Adjust width to fit 2 cards in each row with some margin */
   margin-bottom: 20px;
   border: 1px solid #060606;
   border-radius: 10px;
   padding: 20px;
-  /* Increase padding */
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s ease;
-  /* Smooth transition */
 }
 
 .preference-card:hover {
   background-color: #f0f0f0;
-  /* Change background color on hover */
 }
 
 .preference-card img {
   width: 80px;
-  /* Increase icon size */
   height: 80px;
-  /* Increase icon size */
   margin-bottom: 10px;
-  /* Add space between icon and text */
   display: block;
-  /* Center the icon */
   margin: 0 auto 10px;
-  /* Center the icon */
 }
 
 .preference-card p {
   margin: 0;
   vertical-align: bottom;
-  /* Align text at the bottom */
 }
 
-/* Hide the checkbox */
+
 .preference-card input[type="checkbox"] {
   display: none;
 }
@@ -116,15 +105,11 @@ h3 {
   font-family: "Courier New", Courier, monospace;
 }
 
-/* Selected card style */
 .preference-card.selected {
   background-color: #4caf50;
-  /* Change background color for selected card */
   color: white;
-  /* Change text color for selected card */
 }
 
-/* Plan Customization Styles */
 .customization {
   width: 40%;
 }
@@ -152,12 +137,10 @@ h3 {
   cursor: pointer;
   position: relative;
   background-color: #f9f9f9;
-  /* Set default background color */
 }
 
 .option-card input[type="radio"] {
   display: none;
-  /* Hide the radio buttons */
 }
 
 .option-card label {
@@ -174,12 +157,9 @@ h3 {
   content: "";
   position: absolute;
   width: 20px;
-  /* Adjust size of inner circle */
   height: 20px;
-  /* Adjust size of inner circle */
   border-radius: 50%;
   background-color: transparent;
-  /* Set inner circle background color to transparent */
   transition: background-color 0.3s ease;
   display: none;
 }
@@ -187,7 +167,6 @@ h3 {
 .option-card.selected {
   background-color: #4caf50;
   color: white;
-  /* Change background color for selected card */
 }
 
 .plan-details {
@@ -258,10 +237,9 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Style for disabled button */
 #select-plan-btn[disabled] {
-  background-color: #cccccc; /* Change to your preferred disabled background color */
-  color: #666666; /* Change to your preferred disabled text color */
+  background-color: #cccccc;
+  color: #666666;
   cursor: not-allowed;
 }
 
@@ -270,13 +248,10 @@ button:hover {
   border-left: 2px dashed #414040;
   height: 600px;
   margin: 0 20px;
-  /* Adjust margin as needed */
 }
 
 
 @media (max-width: 520px) {
-  /* General Styles for Small Devices */
-
   body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
@@ -388,7 +363,6 @@ button:hover {
     color: white;
   }
 
-  /* Plan Customization Styles */
   .customization {
     width: 70%;
   }

@@ -1,4 +1,3 @@
-/* Reset CSS */
 * {
     padding: 0;
     margin: 0;
@@ -13,8 +12,8 @@ nav ul {
     list-style: none;
     background: white;
     display: flex;
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li {
@@ -39,7 +38,7 @@ nav ul ul.dropdown {
     background: white;
     display: none;
     z-index: 1000;
-    width: 100%; /* Set width to 100% */
+    width: 100%;
 }
 
 nav ul ul.dropdown li {
@@ -56,7 +55,7 @@ nav ul li:hover > ul.dropdown {
 }
 
 nav ul li:first-child a img {
-    width: 40px; /* Adjust the width as needed */
+    width: 40px;
     height: auto;
 }
 
@@ -164,7 +163,7 @@ nav ul li:first-child a img {
 }
 
 .first-box {
-    flex: 0 0 25%; /* Each box takes 25% width */
+    flex: 0 0 25%;
     padding: 0 15px;
     margin-bottom: 20px;
     text-align: center;
@@ -204,8 +203,8 @@ nav ul li:first-child a img {
         margin-left: -15px;
         margin-right: -15px;
         display: flex;
-        justify-content: center; /* Horizontally center the content */
-        align-items: center; /* Vertically center the content */
+        justify-content: center;
+        align-items: center;
         padding: 40px;
     }
 }

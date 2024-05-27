@@ -1,15 +1,12 @@
-// Access the chartdata from the script tag with id "chart-data"
 var chartDataElement = document.getElementById("chart-data");
 
 if (chartDataElement) {
-  // Parse the JSON data from the script tag content
   var chartData = JSON.parse(chartDataElement.textContent);
 } else {
   console.error("Chart data not found.");
 }
 
 
-// Data for the chart
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   datasets: [{
@@ -22,7 +19,6 @@ const data = {
   }]
 };
 
-// Configuration options
 const config = {
   type: 'bar',
   data: data,
@@ -51,7 +47,6 @@ const config = {
   }
 };
 
-// Create the chart
 var myChart = new Chart(
   document.getElementById('myChart'),
   config

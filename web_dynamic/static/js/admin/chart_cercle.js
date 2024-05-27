@@ -1,18 +1,14 @@
-// Access the chartdata from the script tag with id "chart-data"
 var chartDataElement = document.getElementById("chart-data");
 
 if (chartDataElement) {
-  // Parse the JSON data from the script tag content
   var chartData = JSON.parse(chartDataElement.textContent);
 
-  // Now you can use the chartData variable in your JavaScript code
   console.log(chartData);
 } else {
   console.error("Chart data not found.");
 }
 
 
-// Sample matrix data (replace with your actual data)
 const matrixData = [
   chartData.pending,
   chartData.confirmed,
@@ -24,11 +20,8 @@ const matrixData = [
 
 console.log(matrixData)
 
-
-// Get canvas element
 const ctx = document.getElementById('matrixChart').getContext('2d');
 
-// Create doughnut chart
 const chart = new Chart(ctx, {
   type: 'doughnut',
   data: {

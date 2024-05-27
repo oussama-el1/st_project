@@ -1,8 +1,6 @@
 $(document).ready(function () {
-    // Initially disable the submit button
     $('.button-50').prop('disabled', true);
 
-    // Function to enable/disable submit button based on input fields
     function toggleSubmitButton() {
         var fields = $('#shipping-form input[required]');
         var allFieldsFilled = true;
@@ -17,10 +15,8 @@ $(document).ready(function () {
         $('.button-50').prop('disabled', !allFieldsFilled);
     }
 
-    // Call toggleSubmitButton function whenever input fields change
     $('#shipping-form input').on('input', toggleSubmitButton);
 
-    // Submit form when button is clicked
     $('.button-50').click(function (event) {
         event.preventDefault();
 
